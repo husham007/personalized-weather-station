@@ -1,7 +1,8 @@
 import { useState } from "react";
 import SignIn from "./components/molecules/SignIn.jsx";
 
-import Login from "./components/molecules/Login.jsx";
+import LoginPage from "./components/molecules/LoginPage.jsx";
+import SignUpPage from "./components/molecules/SignUpPage.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,7 +13,8 @@ function App() {
         <h1>Vite + React</h1>
       </div>
       {/* <SignIn /> */}
-      <Login />
+      <LoginPage />
+      <SignUpPage />
     </>
   );
 }

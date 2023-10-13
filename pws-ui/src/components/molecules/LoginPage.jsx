@@ -3,14 +3,13 @@ import SignIn from "./SignIn";
 import { Grid } from "@mui/material";
 import loginIllustration from "../../assets/images/Login_illustration.svg";
 
-const Login = () => {
+const LoginPage = () => {
   const containerStyle = {
-    // backgroundColor: "lightblue",
-    // height: "200vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   };
+
   return (
     <Grid container style={containerStyle}>
       <Grid item xs={12} md={6} style={{ textAlign: "center" }}>
@@ -28,4 +27,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
