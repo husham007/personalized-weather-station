@@ -97,18 +97,26 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: "black",
+                hover: "lightBlack",
+                "&:hover": {
+                  bgcolor: "secondary.main",
+                },
+              }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{ color: "black" }}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{ color: "black" }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
