@@ -1,4 +1,4 @@
-import Login from "../components/molecules/Login.jsx";
+import Login from "../components/organisms/LoginPage";
 
 export default {
   title: "Example/Login",

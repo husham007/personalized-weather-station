@@ -1,7 +1,14 @@
 import React from "react";
-import SignIn from "./SignIn";
+import SignIn from "../molecules/SignIn";
 import { Grid } from "@mui/material";
 import loginIllustration from "../../assets/images/Login_illustration.svg";
+import styled from "@emotion/styled";
+
+// const GridContainer = styled.Grid`
+//   display: "flex";
+//   alignitems: "center";
+//   justifycontent: "center";
+// `;
 
 const LoginPage = () => {
   const containerStyle = {

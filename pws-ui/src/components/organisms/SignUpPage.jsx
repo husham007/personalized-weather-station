@@ -1,5 +1,5 @@
 import React from "react";
-import SignUp from "./SignUp";
+import SignUp from "../molecules/SignUp";
 import { Grid } from "@mui/material";
 import signUpImg from "../../assets/images/Signup_illustration.svg";
 
