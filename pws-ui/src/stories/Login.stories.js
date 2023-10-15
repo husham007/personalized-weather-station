@@ -1,11 +1,11 @@
-import SignIn from "../components/molecules/SignIn.jsx";
+import Login from "../components/organisms/LoginPage";
 
 export default {
-  title: "Example/SignIn",
-  component: SignIn,
+  title: "Example/Login",
+  component: Login,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-    // layout: "centered",
+    layout: "centered",
   },
 };
 

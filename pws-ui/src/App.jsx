@@ -1,15 +1,18 @@
-import { useState } from "react";
-import SignIn from "./components/molecules/SignIn.jsx";
+import LoginPage from "./components/organisms/LoginPage.jsx";
+import SignUpPage from "./components/organisms/SignUpPage.jsx";
+import Navbar from "./components/molecules/Navbar.jsx";
+import Footer from "./components/organisms/Footer.jsx";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <h1>Vite + React</h1>
-      </div>
-      <SignIn />
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
