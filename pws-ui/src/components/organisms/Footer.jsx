@@ -1,28 +1,24 @@
 import React from "react";
 import SocialMediaIcons from "../atoms/SocialMediaIcons";
-import { Container, Typography } from "@mui/material";
+import Info from "../atoms/Info";
+import { Container, Typography, Grid } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Container
+    <Grid
+      container
+      spacing={2}
       sx={{ bgcolor: "black", position: "fixed", bottom: "0" }}
       maxWidth="xl"
+      justifyContent="center"
     >
-      <SocialMediaIcons color="error" />
-      {/* <Typography
-        variant="h6"
-        noWrap
-        sx={{
-          fontFamily: "monospace",
-          fontWeight: 700,
-          letterSpacing: ".3rem",
-          color: "white",
-          textDecoration: "none",
-        }}
-      >
-        HOME
-      </Typography> */}
-    </Container>
+      <Grid item>
+        <Info />
+      </Grid>
+      <Grid item>
+        <SocialMediaIcons />
+      </Grid>
+    </Grid>
   );
 };
 

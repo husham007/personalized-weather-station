@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Grid, IconButton } from "@mui/material";
+import { Typography, Grid, IconButton } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -9,7 +9,7 @@ const SocialMediaIcons = () => {
   return (
     <Grid>
       <Typography
-        //   variant="h6"
+        variant="h6"
         noWrap
         sx={{
           color: "white",
@@ -23,7 +23,7 @@ const SocialMediaIcons = () => {
       </IconButton>
 
       <IconButton sx={{ p: 0, mr: 1 }}>
-        <GitHubIcon sx={{ color: "white" }} fontSize="large" />
+        <GitHubIcon sx={{ color: "white", padding: "0px" }} fontSize="large" />
       </IconButton>
 
       <IconButton sx={{ p: 0, mr: 1 }}>
