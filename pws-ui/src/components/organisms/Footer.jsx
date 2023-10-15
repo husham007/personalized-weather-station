@@ -1,6 +1,7 @@
 import React from "react";
 import SocialMediaIcons from "../atoms/SocialMediaIcons";
 import Info from "../atoms/Info";
+import Subscribe from "../atoms/Subscribe";
 import { Container, Typography, Grid } from "@mui/material";
 
 const Footer = () => {
@@ -17,6 +18,9 @@ const Footer = () => {
       </Grid>
       <Grid item>
         <SocialMediaIcons />
+      </Grid>
+      <Grid item>
+        <Subscribe />
       </Grid>
     </Grid>
   );

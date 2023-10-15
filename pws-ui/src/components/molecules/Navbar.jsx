@@ -141,6 +141,12 @@ const Navbar = () => {
               >
                 Login
               </Button>
+              <Button
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={() => navigate("/signup")}
+              >
+                Signup
+              </Button>
             </>
           ) : (
             <>
