@@ -12,10 +12,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+
   let user = null;
   let pages;
   if (!user) {
@@ -132,7 +135,10 @@ const Navbar = () => {
           </Box>
           {user === null ? (
             <>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
+              <Button
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={() => navigate("/login")}
+              >
                 Login
               </Button>
             </>

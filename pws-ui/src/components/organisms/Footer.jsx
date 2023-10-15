@@ -8,7 +8,7 @@ const Footer = () => {
     <Grid
       container
       spacing={2}
-      sx={{ bgcolor: "black", position: "fixed", bottom: "0" }}
+      sx={{ bgcolor: "black", bottom: "0" }}
       maxWidth="xl"
       justifyContent="center"
     >
