@@ -2,27 +2,35 @@ import React from "react";
 import SocialMediaIcons from "../atoms/SocialMediaIcons";
 import Info from "../atoms/Info";
 import Subscribe from "../atoms/Subscribe";
-import { Container, Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{ bgcolor: "black", bottom: "0" }}
-      maxWidth="xl"
-      justifyContent="center"
-    >
-      <Grid item>
-        <Info />
+    <footer style={{ marginTop: "10rem" }}>
+      <Grid
+        container
+        maxWidth="2xl"
+        spacing={{ xs: 5, lg: 0 }}
+        sx={{
+          bgcolor: "black",
+          minHeight: "10rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignContent: "center",
+          padding: "0px 80px",
+        }}
+      >
+        <Grid item marginTop={{ xs: 5, sm: 0 }} padding={{ sm: 0 }}>
+          <Subscribe />
+        </Grid>
+        <Grid item>
+          <Info />
+        </Grid>
+        <Grid item marginBottom={{ xs: 5, sm: 0 }}>
+          <SocialMediaIcons />
+        </Grid>
       </Grid>
-      <Grid item>
-        <SocialMediaIcons />
-      </Grid>
-      <Grid item>
-        <Subscribe />
-      </Grid>
-    </Grid>
+    </footer>
   );
 };
 
