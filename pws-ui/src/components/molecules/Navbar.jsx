@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -22,9 +22,9 @@ const Navbar = () => {
   let user = null;
   let pages;
   if (!user) {
-    pages = ["WEATHER", "CONTACT"];
+    pages = ["Weather", "contact"];
   } else {
-    pages = ["WEATHER", "CONTACT", "FAVOURITES"];
+    pages = ["weather", "contact", "favourites"];
   }
 
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -36,7 +36,8 @@ const Navbar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page) => {
+    navigate(`/${page}`);
     setAnchorElNav(null);
   };
 
@@ -97,7 +98,7 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -126,7 +127,7 @@ const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
