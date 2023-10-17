@@ -2,11 +2,11 @@ import React from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 
-const Map = () => {
+const Map = ({ company, city, markerPosition }) => {
   return (
     <div>
       <MapContainer
-        center={[60.19928562367708, 24.93441320897156]}
+        center={markerPosition}
         zoom={13}
         scrollWheelZoom={true}
         style={{ height: "45vh", width: "100%" }}
@@ -15,10 +15,10 @@ const Map = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[60.19928562367708, 24.93441320897156]}>
+        <Marker position={markerPosition}>
           <Popup>
-            WeatherStation Oy <br />
-            Helsinki
+            {company} <br />
+            {city}
           </Popup>
         </Marker>
       </MapContainer>

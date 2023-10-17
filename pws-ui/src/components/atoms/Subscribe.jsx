@@ -17,9 +17,10 @@ const Subscribe = () => {
           variant="outlined"
           label="Email"
           size="small"
-          color="secondary"
-          sx={{ bgcolor: "white", borderRadius: "4px" }}
-        ></TextField>
+          color="error"
+          // autoFocus
+          sx={{ bgcolor: "white", borderRadius: "4px", color: "white" }}
+        />
 
         <Button
           variant="contained"
@@ -46,7 +47,7 @@ const Subscribe = () => {
           }}
         >
           {" "}
-          Copyright &copy; 2023, All Rights Reserved
+          Copyright &copy; {new Date().getFullYear()}, All Rights Reserved
         </Typography>
       </Grid>
     </>

@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 
 import { Typography, Stack, Box, IconButton, Grid } from "@mui/material";
 
-const Address = () => {
+const Address = ({ address, phone, email, color }) => {
   return (
     <Grid
       container
@@ -23,51 +23,51 @@ const Address = () => {
         }}
       >
         <IconButton sx={{ p: 0, mr: 1 }}>
-          <LocationOnIcon sx={{ color: "white" }} fontSize="small" />
+          <LocationOnIcon sx={{ color: color }} fontSize="small" />
         </IconButton>
         <Typography
           sx={{
-            color: "white",
+            color: color,
           }}
           variant="caption"
         >
-          WeatherStation Oy <br />
-          Helsinki
+          {address}
         </Typography>
       </Grid>
-
       <Grid
+        container
         sx={{
           display: "flex",
+          flexDirection: "row",
           gap: "1rem",
-          marginTop: "1rem",
+          marginTop: "0.5rem",
         }}
       >
         <Grid>
           <IconButton sx={{ p: 0, mr: 1 }}>
-            <PhoneIcon sx={{ color: "white" }} fontSize="small" />
+            <PhoneIcon sx={{ color: color }} fontSize="small" />
           </IconButton>
           <Typography
             sx={{
-              color: "white",
+              color: color,
             }}
             variant="caption"
           >
-            (358) 981 981 981
+            {phone}
           </Typography>
         </Grid>
 
         <Grid>
           <IconButton sx={{ p: 0, mr: 1 }}>
-            <EmailIcon sx={{ color: "white" }} fontSize="small" />
+            <EmailIcon sx={{ color: color }} fontSize="small" />
           </IconButton>
           <Typography
             sx={{
-              color: "white",
+              color: color,
             }}
             variant="caption"
           >
-            hello@perfectweather.com
+            {email}
           </Typography>
         </Grid>
       </Grid>
