@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Grid,
 } from "@mui/material";
 
 import Map from "../atoms/Map";
@@ -22,10 +21,20 @@ const MapCard = () => {
         <CssBaseline />
 
         <CardMedia>
-          <Map />
+          <Map
+            company={"WeatherStation Oy"}
+            city={"Helsinki"}
+            markerPosition={[60.19928562367708, 24.93441320897156]}
+          />
         </CardMedia>
+
         <CardContent sx={{ bgcolor: "black" }}>
-          <Address />
+          <Address
+            address={`WeatherStation Oy, Helsinki`}
+            phone={"(358) 981 981 981"}
+            email={"hello@perfectweather.com"}
+            color={"white"}
+          />
         </CardContent>
       </Card>
     </Container>

@@ -2,11 +2,15 @@ import React from "react";
 import SocialMediaIcons from "../atoms/SocialMediaIcons";
 import Info from "../atoms/Info";
 import Subscribe from "../atoms/Subscribe";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const Footer = () => {
   return (
-    <footer style={{ marginTop: "10rem" }}>
+    <Box
+      sx={{
+        marginTop: "20rem",
+      }}
+    >
       <Grid
         container
         maxWidth="2xl"
@@ -30,7 +34,7 @@ const Footer = () => {
           <SocialMediaIcons />
         </Grid>
       </Grid>
-    </footer>
+    </Box>
   );
 };
 
