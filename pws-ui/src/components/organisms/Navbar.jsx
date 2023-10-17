@@ -20,12 +20,12 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 
-  let user = 3;
+  let user = null;
   let pages;
   if (!user) {
-    pages = ["Weather", "contact"];
+    pages = ["contact"];
   } else {
-    pages = ["weather", "contact", "favourites"];
+    pages = ["contact", "favourites"];
   }
 
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -58,7 +58,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={Link}
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
@@ -69,6 +69,7 @@ const Navbar = () => {
               color: "inherit",
               textDecoration: "none",
             }}
+            to="/"
           >
             HOME
           </Typography>
@@ -116,7 +117,7 @@ const Navbar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+            component={Link}
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
@@ -128,8 +129,9 @@ const Navbar = () => {
               color: "inherit",
               textDecoration: "none",
             }}
+            to="/"
           >
-            WEATHER
+            HOME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
