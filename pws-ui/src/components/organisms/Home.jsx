@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   TextField,
@@ -12,8 +12,26 @@ import {
   Stack,
 } from "@mui/material";
 import SearchBar from "../molecules/Searchbar";
+import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 
 const Home = () => {
+  const [textQuery, setTestQuery] = useState("");
+  const [radioOption, setRadioOption] = useState("city");
+
+  // console.log(textQuery);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      query: data.get("serachQuery"),
+    });
+    setTestQuery("");
+  };
+
+  const handleRadioOption = (event) => {
+    setRadioOption(event.target.value);
+  };
+
   return (
     <Grid
       container
@@ -21,9 +39,26 @@ const Home = () => {
         marginTop: "1rem",
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <SearchBar searchBarWidth="720px" />
+      <Grid item xs={12} sm={8} md={8}>
+        <ControlledRadioButtonsGroup
+          handleRadioOption={handleRadioOption}
+          radioOption={radioOption}
+        />
+
+        {radioOption === "city" ? (
+          <SearchBar
+            handleSubmit={handleSubmit}
+            onChange={(e) => setTestQuery(e.target.value)}
+            textQuery={textQuery}
+            placeholder="Enter the city name"
+          />
+        ) : (
+          <p>Image</p>
+        )}
+      </Grid>
     </Grid>
   );
 };

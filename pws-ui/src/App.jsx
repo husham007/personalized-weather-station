@@ -21,7 +21,7 @@ function App() {
       >
         <CssBaseline />
         <Navbar />
-        <Container component="main" sx={{ mt: 8, mb: 20 }} maxWidth="2xl">
+        <Container component="main" sx={{ mt: 8, mb: 20 }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
