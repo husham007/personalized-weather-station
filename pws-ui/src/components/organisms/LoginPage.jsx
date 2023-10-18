@@ -15,6 +15,7 @@ const LoginPage = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: "10rem",
   };
 
   return (

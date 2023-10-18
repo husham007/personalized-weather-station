@@ -21,15 +21,15 @@ function App() {
       >
         <CssBaseline />
         <Navbar />
-        <Container component="main" sx={{ mt: 8, mb: 20 }} maxWidth="2xl">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/Profile" element={<UserProfile />} />
-          </Routes>
-        </Container>
+        {/* <Container component="main" sx={{ mb: 20 }}> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/Profile" element={<UserProfile />} />
+        </Routes>
+        {/* </Container> */}
         <Footer />
       </Box>
     </>

@@ -18,7 +18,6 @@ const Subscribe = () => {
           label="Email"
           size="small"
           color="error"
-          // autoFocus
           sx={{ bgcolor: "white", borderRadius: "4px", color: "white" }}
         />
 
