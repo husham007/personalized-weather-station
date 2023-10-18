@@ -10,7 +10,9 @@ import {
   IconButton,
   Avatar,
   Stack,
+  CssBaseline,
 } from "@mui/material";
+import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 
@@ -33,33 +35,52 @@ const Home = () => {
   };
 
   return (
-    <Grid
-      container
-      sx={{
-        marginTop: "1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Grid item xs={12} sm={8} md={8}>
-        <ControlledRadioButtonsGroup
-          handleRadioOption={handleRadioOption}
-          radioOption={radioOption}
-        />
+    <>
+      <CssBaseline />
+      <Box
+        component="div"
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "15rem",
+          backgroundImage: `url(${hero})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
-        {radioOption === "city" ? (
-          <SearchBar
-            handleSubmit={handleSubmit}
-            onChange={(e) => setTestQuery(e.target.value)}
-            textQuery={textQuery}
-            placeholder="Enter the city name"
+      <Grid
+        container
+        sx={{
+          marginTop: "1rem",
+          marginBottom: "10rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "1rem",
+          paddingLeft: "1rem",
+        }}
+      >
+        <Grid item xs={12} sm={6} md={6}>
+          <ControlledRadioButtonsGroup
+            handleRadioOption={handleRadioOption}
+            radioOption={radioOption}
           />
-        ) : (
-          <p>Image</p>
-        )}
+
+          {radioOption === "city" ? (
+            <SearchBar
+              handleSubmit={handleSubmit}
+              onChange={(e) => setTestQuery(e.target.value)}
+              textQuery={textQuery}
+              placeholder="Enter the city name"
+            />
+          ) : (
+            <p>MAP</p>
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -14,6 +14,7 @@ const Contact = () => {
         direction="row"
         sx={{
           marginTop: "5rem",
+          marginBottom: "10rem",
         }}
       >
         <Grid item xs={12} md={6}>
