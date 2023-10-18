@@ -4,7 +4,7 @@ import { Box, TextField, Button, Grid } from "@mui/material";
 
 const SearchBar = ({ placeholder, onChange, handleSubmit, textQuery }) => {
   return (
-    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+    <Box component="form" noValidate onSubmit={handleSubmit}>
       <Grid container sx={{ display: "flex", alignItems: "center" }}>
         <Grid item xs={12} sm={10} md={10}>
           <TextField
@@ -16,13 +16,13 @@ const SearchBar = ({ placeholder, onChange, handleSubmit, textQuery }) => {
             sx={{
               color: "primary.main",
               fontSize: "1rem",
+              bgcolor: "white",
             }}
             size="small"
             InputProps={{
               startAdornment: (
                 <SearchIcon
                   sx={{
-                    ml: "5px",
                     mr: "10px",
                     color: "black",
                   }}

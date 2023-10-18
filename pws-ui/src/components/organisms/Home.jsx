@@ -15,6 +15,8 @@ import {
 import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
+import Map from "../atoms/Map";
+import DraggableMap from "../molecules/DraggableMap";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
@@ -42,7 +44,7 @@ const Home = () => {
         sx={{
           position: "relative",
           width: "100%",
-          height: "15rem",
+          height: "17rem",
           backgroundImage: `url(${hero})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -53,16 +55,16 @@ const Home = () => {
       <Grid
         container
         sx={{
-          marginTop: "1rem",
-          marginBottom: "10rem",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           paddingRight: "1rem",
           paddingLeft: "1rem",
+          bgcolor: "#f2f2f2",
+          height: "8rem",
         }}
       >
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid item xs={12} sm={8} md={6}>
           <ControlledRadioButtonsGroup
             handleRadioOption={handleRadioOption}
             radioOption={radioOption}
@@ -75,9 +77,23 @@ const Home = () => {
               textQuery={textQuery}
               placeholder="Enter the city name"
             />
-          ) : (
-            <p>MAP</p>
-          )}
+          ) : null}
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        sx={{
+          marginBottom: "10rem",
+          marginTop: "5rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "1rem",
+          paddingLeft: "1rem",
+        }}
+      >
+        <Grid item xs={12} sm={8} md={8}>
+          {radioOption === "map" && <DraggableMap />}
         </Grid>
       </Grid>
     </>

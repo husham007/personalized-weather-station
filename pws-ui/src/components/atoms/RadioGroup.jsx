@@ -10,7 +10,7 @@ export default function ControlledRadioButtonsGroup({
   radioOption,
 }) {
   return (
-    <FormControl sx={{ marginTop: "0.5rem" }}>
+    <FormControl>
       {/* <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel> */}
       <RadioGroup
         row
