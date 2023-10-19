@@ -61,10 +61,16 @@ const Home = () => {
           paddingRight: "1rem",
           paddingLeft: "1rem",
           bgcolor: "#f2f2f2",
-          height: "8rem",
+          height: "10rem",
         }}
       >
-        <Grid item xs={12} sm={8} md={6}>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={6}
+          textAlign={{ xs: "center", sm: "left" }}
+        >
           <ControlledRadioButtonsGroup
             handleRadioOption={handleRadioOption}
             radioOption={radioOption}
