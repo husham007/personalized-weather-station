@@ -1,5 +1,17 @@
 import React, { useState } from "react";
-import { Box, Grid, CssBaseline } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Card,
+  Box,
+  Grid,
+  CardContent,
+  Typography,
+  IconButton,
+  Avatar,
+  Stack,
+  CssBaseline,
+} from "@mui/material";
 import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
@@ -10,6 +22,7 @@ const Home = () => {
   const [radioOption, setRadioOption] = useState("city");
   const [position, setPosition] = useState("");
 
+  // console.log(textQuery);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
