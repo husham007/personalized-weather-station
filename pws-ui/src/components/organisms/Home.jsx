@@ -16,11 +16,11 @@ import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 import Map from "../atoms/Map";
-import DraggableMap from "../molecules/DraggableMap";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
+  const [position, setPosition] = useState("");
 
   // console.log(textQuery);
   const handleSubmit = (event) => {
@@ -61,10 +61,16 @@ const Home = () => {
           paddingRight: "1rem",
           paddingLeft: "1rem",
           bgcolor: "#f2f2f2",
-          height: "8rem",
+          height: "10rem",
         }}
       >
-        <Grid item xs={12} sm={8} md={6}>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={6}
+          textAlign={{ xs: "center", sm: "left" }}
+        >
           <ControlledRadioButtonsGroup
             handleRadioOption={handleRadioOption}
             radioOption={radioOption}
@@ -93,7 +99,14 @@ const Home = () => {
         }}
       >
         <Grid item xs={12} sm={8} md={8}>
-          {radioOption === "map" && <DraggableMap />}
+          {radioOption === "map" && (
+            <Map
+              markerPosition={[60.19928562367708, 24.93441320897156]}
+              draggable="yes"
+              setPosition={setPosition}
+              position={position}
+            />
+          )}
         </Grid>
       </Grid>
     </>
