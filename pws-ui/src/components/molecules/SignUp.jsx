@@ -12,13 +12,20 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const { signUp } = useAuthStore();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    signUp({
+      email: data.get("email"),
+      username: data.get("firstName") + " " + data.get("lastName"),
+      password: data.get("password"),
+    });
     console.log({
       email: data.get("email"),
       password: data.get("password"),
