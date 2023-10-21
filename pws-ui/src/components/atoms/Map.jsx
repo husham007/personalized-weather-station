@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   MapContainer,
   TileLayer,
@@ -7,20 +6,10 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import { useState, useRef, useMemo, useCallback } from "react";
+
 import DraggableMarker from "./DraggableMarker";
 import iconMarker from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
-
-// import icon from "leaflet/dist/images/marker-icon.png";
-// import iconShadow from "leaflet/dist/images/marker-shadow.png";
-
-// let DefaultIcon = L.icon({
-//   iconUrl: icon,
-//   shadowUrl: iconShadow,
-// });
-
-// L.Marker.prototype.options.icon = DefaultIcon;
 
 const icon = L.icon({
   iconRetinaUrl: iconRetina,
@@ -28,16 +17,6 @@ const icon = L.icon({
   // shadowUrl: iconShadow,
   iconSize: [20, 30],
 });
-
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
-
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 const Map = ({
   company,
