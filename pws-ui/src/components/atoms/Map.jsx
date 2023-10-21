@@ -1,4 +1,5 @@
-import "leaflet/dist/leaflet.css";
+import React from "react";
+
 import {
   MapContainer,
   TileLayer,
@@ -27,6 +28,16 @@ const icon = L.icon({
   // shadowUrl: iconShadow,
   iconSize: [20, 30],
 });
+
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const Map = ({
   company,
