@@ -1,27 +1,36 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { useState, useRef, useMemo, useCallback } from "react";
+import { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
 const center = {
   lat: 60.278,
   lng: 24.865,
 };
 
-const DraggableMarker = ({ icon }) => {
+const DraggableMarker = ({ icon, setPosition }) => {
   const [markerDragPosition, setMarkerDragPosition] = useState(center);
 
   const [currentLocation, setCurrentLocation] = useState(null);
 
   const map = useMapEvents({
-    click() {
-      map.locate();
+    click(e) {
+      // map.locate(e);
+      const newLocation = e.latlng;
+
+      setCurrentLocation(newLocation);
+      setMarkerDragPosition(newLocation);
+      setPosition([newLocation.lat, newLocation.lng]);
+      // map.flyTo(newLocation, map.getZoom());
     },
     locationfound(e) {
-      setCurrentLocation(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
+      const userLocation = e.latlng;
+      setCurrentLocation(userLocation);
+      setMarkerDragPosition(userLocation);
+      setPosition([userLocation.lat, userLocation.lng]);
+      map.flyTo(userLocation, map.getZoom());
     },
   });
-
+  // console.log(markerDragPosition);
   const markerRef = useRef(null);
 
   const eventHandlers = useMemo(
@@ -31,13 +40,18 @@ const DraggableMarker = ({ icon }) => {
 
         if (marker != null) {
           setMarkerDragPosition(marker.getLatLng());
+
+          setPosition([marker.getLatLng().lat, marker.getLatLng().lng]);
         }
       },
     }),
     []
   );
 
-  // console.log(markerDragPosition);
+  useEffect(() => {
+    map.locate();
+  }, [map]);
+
   return currentLocation === null ? null : (
     <Marker
       draggable={true}
@@ -45,6 +59,7 @@ const DraggableMarker = ({ icon }) => {
       position={currentLocation}
       ref={markerRef}
       icon={icon}
+      onclick={() => console.log("Marker clicked!")}
     >
       <Popup minWidth={90}>
         <span>
