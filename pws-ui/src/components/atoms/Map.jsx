@@ -50,7 +50,11 @@ const Map = ({
         />
 
         {draggable ? (
-          <>{position && <DraggableMarker icon={icon}/>}</>
+          <>
+            {position && (
+              <DraggableMarker setPosition={setPosition} icon={icon} />
+            )}
+          </>
         ) : (
           <Marker position={markerPosition} icon={icon}>
             <Popup>
