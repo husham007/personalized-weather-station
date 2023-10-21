@@ -12,12 +12,8 @@ import Address from "../atoms/Address";
 
 const MapCard = () => {
   return (
-    <Container component="main" maxWidth="xs">
-      <Card
-        sx={{
-          maxWidth: 600,
-        }}
-      >
+    <Container component="main" maxWidth="sm">
+      <Card>
         <CssBaseline />
 
         <CardMedia>
@@ -25,6 +21,7 @@ const MapCard = () => {
             company={"WeatherStation Oy"}
             city={"Helsinki"}
             markerPosition={[60.19928562367708, 24.93441320897156]}
+            position={[60.19928562367708, 24.93441320897156]}
           />
         </CardMedia>
 

@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  TextField,
-  Card,
-  Box,
-  Grid,
-  CardContent,
-  Typography,
-  IconButton,
-  Avatar,
-  Stack,
-  CssBaseline,
-} from "@mui/material";
+import { Box, Grid, CssBaseline } from "@mui/material";
 import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
@@ -20,7 +8,9 @@ import Map from "../atoms/Map";
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
-  const [position, setPosition] = useState("");
+  const [position, setPosition] = useState([
+    60.19928562367708, 24.93441320897156,
+  ]);
 
   // console.log(textQuery);
   const handleSubmit = (event) => {
@@ -101,7 +91,7 @@ const Home = () => {
         <Grid item xs={12} sm={8} md={8}>
           {radioOption === "map" && (
             <Map
-              markerPosition={[60.19928562367708, 24.93441320897156]}
+              // markerPosition={[60.19928562367708, 24.93441320897156]}
               draggable="yes"
               setPosition={setPosition}
               position={position}
