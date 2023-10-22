@@ -14,9 +14,10 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const UserProfile = () => {
-  let name = "Kent Dodds";
+  const { username } = useAuthStore();
   function stringToColor(string) {
     let hash = 0;
     let i;
@@ -103,7 +104,7 @@ const UserProfile = () => {
               }}
             >
               <Stack marginRight={2}>
-                <Avatar {...stringAvatar(name)} />
+                <Avatar {...stringAvatar(username)} />
               </Stack>
               {show ? (
                 <Stack>
@@ -112,7 +113,7 @@ const UserProfile = () => {
                     fontWeight="bold"
                     sx={{ marginBottom: "5px" }}
                   >
-                    {name}
+                    {username}
                   </Typography>
                   <Address
                     address={`Germany`}
