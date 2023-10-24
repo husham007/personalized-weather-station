@@ -23,8 +23,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { checkStoredToken, username, signOut } = useAuthStore();
+
   useEffect(() => {
-    // Call checkStoredToken when the component mounts
     checkStoredToken();
   }, []);
   let user = username;
@@ -50,16 +50,15 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = (e) => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   const handleProfile = () => {
-    // navigate("/profile");
+    navigate("/profile");
   };
 
   const handleLogout = () => {
-
     signOut();
     navigate("/");
   };
@@ -211,8 +210,12 @@ const Navbar = () => {
                       <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                   ))} */}
-                  <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={handleProfile}>
+                    <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
                 </Menu>
               </Box>
             </>

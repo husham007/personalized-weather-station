@@ -5,11 +5,6 @@ import { extractUserInfoFromToken } from "../../misc/tokenUtils";
 const AUTH_API_URL = "http://localhost:8080/api/auth";
 // Create a Zustand store for authentication
 const useAuthStore = create((set) => {
-  // username: null,
-  // email: null,
-  // id: null,
-  // token: null,
-
   const storedToken = localStorage.getItem("token");
   const initialTokenData = storedToken
     ? extractUserInfoFromToken(storedToken)
@@ -56,7 +51,6 @@ const useAuthStore = create((set) => {
 
     // Sign-out function
     signOut: () => {
-      // set({ usererName: null, token: null, email: null });
       set((state) => {
         return { username: null, token: null, email: null };
       });
