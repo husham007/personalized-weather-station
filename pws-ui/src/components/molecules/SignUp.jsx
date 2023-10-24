@@ -11,25 +11,27 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const { signUp } = useAuthStore();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     signUp({
       email: data.get("email"),
-      username: data.get("firstName") + " " + data.get("lastName"),
+      username: data.get("userName"),
       password: data.get("password"),
     });
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    // console.log({
+    //   username: data.get("userName"),
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (
@@ -57,7 +59,7 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -77,7 +79,18 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                 />
+              </Grid> */}
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="userName"
+                  name="userName"
+                  required
+                  fullWidth
+                  label="User Name"
+                  autoFocus
+                />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required

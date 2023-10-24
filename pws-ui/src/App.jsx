@@ -27,7 +27,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Profile" element={<UserProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
         {/* </Container> */}
         <Footer />

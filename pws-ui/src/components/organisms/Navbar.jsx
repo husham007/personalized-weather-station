@@ -15,14 +15,20 @@ import AdbIcon from "@mui/icons-material/Adb";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
-  const { username } = useAuthStore();
 
+  const { checkStoredToken, username, signOut } = useAuthStore();
+  useEffect(() => {
+    // Call checkStoredToken when the component mounts
+    checkStoredToken();
+  }, []);
   let user = username;
+
   let pages;
   if (!user) {
     pages = ["contact"];
@@ -30,7 +36,7 @@ const Navbar = () => {
     pages = ["contact", "favourites"];
   }
 
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const settings = ["Profile", "Logout"];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -45,8 +51,17 @@ const Navbar = () => {
   };
 
   const handleCloseUserMenu = (e) => {
-    navigate(`/${e}`);
     setAnchorElUser(null);
+  };
+
+  const handleProfile = () => {
+    // navigate("/profile");
+  };
+
+  const handleLogout = () => {
+
+    signOut();
+    navigate("/");
   };
 
   return (
@@ -146,7 +161,7 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-          {user === null ? (
+          {!user ? (
             <>
               <Button
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -188,14 +203,16 @@ const Navbar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
+                  {/* {settings.map((setting) => (
                     <MenuItem
                       key={setting}
                       onClick={() => handleCloseUserMenu(setting)}
                     >
                       <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
-                  ))}
+                  ))} */}
+                  <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </Box>
             </>

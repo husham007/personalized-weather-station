@@ -18,6 +18,7 @@ import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const UserProfile = () => {
   const { username } = useAuthStore();
+  console.log(username);
   function stringToColor(string) {
     let hash = 0;
     let i;
