@@ -18,15 +18,18 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
   const { signUp } = useAuthStore();
-
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    signUp({
+    
+    const successMessage = await signUp({
       email: data.get("email"),
       username: data.get("userName"),
       password: data.get("password"),
     });
+    console.log(successMessage.message);
+    navigate("/login");
     // console.log({
     //   username: data.get("userName"),
     //   email: data.get("email"),

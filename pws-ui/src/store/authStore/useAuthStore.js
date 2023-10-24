@@ -43,9 +43,7 @@ const useAuthStore = create((set) => {
           credentials
         );
         const { username, id, email, token } = response.data;
-
         set({ username, id, email, token });
-
         localStorage.setItem("token", token);
         return { success: true, message: "Sign-in successful!" };
       } catch (error) {
