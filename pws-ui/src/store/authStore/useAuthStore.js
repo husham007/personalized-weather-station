@@ -49,12 +49,14 @@ const useAuthStore = create((set) => {
       }
     },
 
-    // Sign-out function
-    signOut: () => {
-      set((state) => {
-        return { username: null, token: null, email: null };
-      });
-      localStorage.removeItem("token");
+    signOut: async () => {
+      try {
+        set((state) => {
+          return { username: null, token: null, email: null };
+        });
+        localStorage.removeItem("token");
+        return { success: true, message: "Logout successful!" };
+      } catch (error) {}
     },
 
     checkStoredToken: () => {

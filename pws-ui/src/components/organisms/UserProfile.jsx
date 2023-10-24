@@ -74,6 +74,7 @@ const UserProfile = () => {
     <Grid
       container
       sx={{
+        marginBottom: "10rem",
         marginTop: "5rem",
         display: "flex",
         justifyContent: "center",
