@@ -3,7 +3,7 @@ import axios from "axios";
 import { extractUserInfoFromToken } from "../../misc/tokenUtils";
 
 // const AUTH_API_URL = "http://localhost:8080/api/auth";
-const AUTH_API_URL = import.meta.env.VITE_BE_URL || "/api/auth";
+const AUTH_API_URL = (import.meta.env.VITE_BE_URL || "") + "/api/auth";
 
 // Create a Zustand store for authentication
 const useAuthStore = create((set) => {
