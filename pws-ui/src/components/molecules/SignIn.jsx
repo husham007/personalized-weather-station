@@ -5,27 +5,30 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-// import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const { signIn, setNotification } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const successMessage = await signIn({
       email: data.get("email"),
       password: data.get("password"),
     });
+    setNotification(true, successMessage.message, "success");
+    navigate("/");
   };
 
   return (

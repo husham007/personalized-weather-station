@@ -14,32 +14,39 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import useAuthStore from "../../store/authStore/useAuthStore.js";
 
 const UserProfile = () => {
-  let name = "Kent Dodds";
+  const { username, email } = useAuthStore();
+
   function stringToColor(string) {
-    let hash = 0;
-    let i;
-    for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    if (string) {
+      let hash = 0;
+      let i;
+      for (i = 0; i < string.length; i += 1) {
+        hash = string.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      let color = "#";
+      for (i = 0; i < 3; i += 1) {
+        const value = (hash >> (i * 8)) & 0xff;
+        color += `00${value.toString(16)}`.slice(-2);
+      }
+
+      return color;
     }
-    let color = "#";
-    for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
-    }
-    return color;
   }
 
   function stringAvatar(name) {
-    return {
-      sx: {
-        bgcolor: stringToColor(name),
-        width: 100,
-        height: 100,
-      },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
-    };
+    if (typeof name === "string" && name.length >= 2) {
+      return {
+        sx: {
+          bgcolor: stringToColor(name),
+          width: 100,
+          height: 100,
+        },
+        children: `${name[0]}${name[1]}`,
+      };
+    }
   }
 
   const [show, setShow] = useState(true);
@@ -50,7 +57,8 @@ const UserProfile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(event.target);
+
     // console.log({
     //   email: data.get("email"),
     //   password: data.get("password"),
@@ -66,6 +74,7 @@ const UserProfile = () => {
     <Grid
       container
       sx={{
+        marginBottom: "10rem",
         marginTop: "5rem",
         display: "flex",
         justifyContent: "center",
@@ -103,7 +112,7 @@ const UserProfile = () => {
               }}
             >
               <Stack marginRight={2}>
-                <Avatar {...stringAvatar(name)} />
+                <Avatar {...stringAvatar(username)} />
               </Stack>
               {show ? (
                 <Stack>
@@ -112,12 +121,12 @@ const UserProfile = () => {
                     fontWeight="bold"
                     sx={{ marginBottom: "5px" }}
                   >
-                    {name}
+                    {username}
                   </Typography>
                   <Address
                     address={`Germany`}
                     phone={"(358) 981 981 981"}
-                    email={"hello@perfectweather.com"}
+                    email={email}
                     color={"black"}
                   />
                 </Stack>
@@ -134,7 +143,7 @@ const UserProfile = () => {
                         required
                         fullWidth
                         id="email"
-                        label="KD@outlook.com"
+                        label={email}
                         name="email"
                         autoComplete="email"
                         disabled
@@ -144,24 +153,15 @@ const UserProfile = () => {
                       {" "}
                       <TextField
                         autoComplete="given-name"
-                        name="firstName"
+                        name={username}
                         required
                         fullWidth
-                        id="firstName"
-                        label="First Name"
+                        id="username"
+                        label={username}
                         autoFocus
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="lastName"
-                        label="Last Name"
-                        name="lastName"
-                        autoComplete="family-name"
-                      />
-                    </Grid>
+
                     <Grid item xs={12} sm={6}>
                       <TextField fullWidth label="Country" />
                     </Grid>

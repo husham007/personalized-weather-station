@@ -8,10 +8,12 @@ import { Routes, Route } from "react-router-dom";
 import { Box, CssBaseline, Container } from "@mui/material";
 import "./App.css";
 import Home from "../src/components/organisms/Home.jsx";
+import NotificationSnackBars from "./components/molecules/NotificationSnackBars.jsx";
 
 function App() {
   return (
     <>
+      <NotificationSnackBars  />
       <Box
         sx={{
           display: "flex",
@@ -27,7 +29,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Profile" element={<UserProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
         {/* </Container> */}
         <Footer />
