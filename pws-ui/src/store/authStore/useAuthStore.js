@@ -62,11 +62,12 @@ const useAuthStore = create((set) => {
     notification: {
       open: false,
       message: "",
+      severity: "",
     },
 
-    setNotification: (open, message) =>
+    setNotification: (open, message, severity) =>
       set((state) => ({
-        notification: { ...state.notification, open, message },
+        notification: { ...state.notification, open, message, severity },
       })),
 
     checkStoredToken: () => {

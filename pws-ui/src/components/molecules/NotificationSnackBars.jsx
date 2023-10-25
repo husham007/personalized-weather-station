@@ -9,12 +9,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function NotificationSnackBars({
-  open,
-  autoHideDuration,
-  message,
-}) {
-  const { setNotification } = useAuthStore();
+export default function NotificationSnackBars({}) {
+  const { notification, setNotification } = useAuthStore();
 
   const handleClick = () => {
     setOpen(true);
@@ -30,13 +26,17 @@ export default function NotificationSnackBars({
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
-        open={open}
-        autoHideDuration={autoHideDuration}
+        open={notification.open}
+        autoHideDuration={2000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          {message}
+        <Alert
+          onClose={handleClose}
+          severity={notification.severity}
+          sx={{ width: "100%" }}
+        >
+          {notification.message}
         </Alert>
       </Snackbar>
       {/* <Alert severity="error">This is an error message!</Alert> */}

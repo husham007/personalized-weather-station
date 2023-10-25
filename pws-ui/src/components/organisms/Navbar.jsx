@@ -16,7 +16,6 @@ import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
 import { useEffect, useState } from "react";
-import NotificationSnackBars from "../molecules/NotificationSnackBars.jsx";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -61,7 +60,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     const successMessage = await signOut();
-    setNotification(true, successMessage.message);
+    setNotification(true, successMessage.message, "success");
     setTimeout(() => {
       navigate("/");
     }, 2000);

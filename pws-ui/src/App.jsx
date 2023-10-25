@@ -4,24 +4,16 @@ import Navbar from "./components/organisms/Navbar.jsx";
 import Footer from "./components/organisms/Footer.jsx";
 import Contact from "./components/organisms/Contact.jsx";
 import UserProfile from "./components/organisms/UserProfile.jsx";
-import { Routes, Route, useActionData } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Box, CssBaseline, Container } from "@mui/material";
 import "./App.css";
 import Home from "../src/components/organisms/Home.jsx";
 import NotificationSnackBars from "./components/molecules/NotificationSnackBars.jsx";
-import useAuthStore from "./store/authStore/useAuthStore.js";
-useAuthStore;
 
 function App() {
-  const { notification } = useAuthStore();
-
   return (
     <>
-      <NotificationSnackBars
-        open={notification.open}
-        autoHideDuration={2000}
-        message={notification.message}
-      />
+      <NotificationSnackBars  />
       <Box
         sx={{
           display: "flex",

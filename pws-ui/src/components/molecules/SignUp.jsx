@@ -19,18 +19,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
-import NotificationSnackBars from "./NotificationSnackBars.jsx";
 
 import { useState } from "react";
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const { signUp, setNotification, notification } = useAuthStore();
+  const { signUp, setNotification } = useAuthStore();
   const navigate = useNavigate();
-
-  const [open, setOpen] = useState(false); // for snackbar notification
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,9 +39,7 @@ export default function SignUp() {
       password: data.get("password"),
     });
     // console.log(successMessage.message);
-    
-    setMessage(successMessage.message);
-    setOpen(true);
+    setNotification(true, successMessage.message, "success");
 
     setTimeout(() => {
       navigate("/login");
@@ -54,12 +48,6 @@ export default function SignUp() {
 
   return (
     <>
-      <NotificationSnackBars
-        open={open}
-        setOpen={setOpen}
-        autoHideDuration={2000}
-        message={message}
-      />
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
