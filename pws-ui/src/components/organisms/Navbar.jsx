@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
 import { useEffect, useState } from "react";
 import NotificationSnackBars from "../molecules/NotificationSnackBars.jsx";
@@ -22,14 +22,14 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false); // for snackbar notification
-  const [message, setMessage] = useState("");
 
-  const { checkStoredToken, username, signOut } = useAuthStore();
+  const { checkStoredToken, username, signOut, setNotification } =
+    useAuthStore();
 
   useEffect(() => {
     checkStoredToken();
   }, []);
+
   let user = username;
 
   let pages;
@@ -60,10 +60,8 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    // signOut();
     const successMessage = await signOut();
-    setMessage(successMessage.message);
-    setOpen(true);
+    setNotification(true, successMessage.message);
     setTimeout(() => {
       navigate("/");
     }, 2000);
@@ -71,12 +69,6 @@ const Navbar = () => {
 
   return (
     <>
-      <NotificationSnackBars
-        open={open}
-        setOpen={setOpen}
-        autoHideDuration={2000}
-        message={message}
-      />
       <AppBar position="static" sx={{ bgcolor: "black" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>

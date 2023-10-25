@@ -26,7 +26,7 @@ import { useState } from "react";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const { signUp } = useAuthStore();
+  const { signUp, setNotification, notification } = useAuthStore();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false); // for snackbar notification
@@ -43,8 +43,8 @@ export default function SignUp() {
       password: data.get("password"),
     });
     // console.log(successMessage.message);
+    
     setMessage(successMessage.message);
-
     setOpen(true);
 
     setTimeout(() => {

@@ -59,6 +59,16 @@ const useAuthStore = create((set) => {
       } catch (error) {}
     },
 
+    notification: {
+      open: false,
+      message: "",
+    },
+
+    setNotification: (open, message) =>
+      set((state) => ({
+        notification: { ...state.notification, open, message },
+      })),
+
     checkStoredToken: () => {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
