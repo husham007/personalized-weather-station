@@ -83,6 +83,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
+              id="Sign-in"
               sx={{
                 mt: 3,
                 mb: 2,
