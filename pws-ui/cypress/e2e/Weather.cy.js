@@ -32,13 +32,24 @@ describe("Personal Weather Station App", () => {
   //   cy.contains("Sign-in successful!");
   // });
 
-  it("New user created", () => {
+  // it("New user created", () => {
+  //   cy.visit("");
+  //   cy.contains("Signup").click();
+  //   cy.get("#userName").type("dani2");
+  //   cy.get("#email").type("dani2@gmail.com");
+  //   cy.get("#password").type("123456");
+  //   cy.get("#signup").click();
+  //   cy.contains("Sign-up successful!");
+  // });
+
+  it("login fails with wrong password", () => {
     cy.visit("");
-    cy.contains("Signup").click();
-    cy.get("#userName").type("dani2");
-    cy.get("#email").type("dani2@gmail.com");
-    cy.get("#password").type("123456");
-    cy.get("#signup").click();
-    cy.contains("Sign-up successful!");
+    cy.contains("Login").click();
+    cy.get("#email").type("dani@gmail.com");
+    cy.get("#password").type("1234567");
+    cy.get("#Sign-in").click();
+    cy.contains("Sign-in failed. Please check your credentials");
+    cy.get("html").should("not.contain", "Sign-up successful!");
   });
+  // Sign-in failed. Please check your credentials
 });
