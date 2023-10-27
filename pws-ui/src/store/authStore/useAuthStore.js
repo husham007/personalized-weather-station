@@ -74,7 +74,7 @@ const useAuthStore = create((set) => {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         const initialTokenData = extractUserInfoFromToken(storedToken);
-        console.log(initialTokenData);
+
         set({
           // username: initialTokenData ? initialTokenData.username : null,
           email: initialTokenData ? initialTokenData.email : null,
