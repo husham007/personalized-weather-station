@@ -76,6 +76,7 @@ export default function SignUp() {
                   <TextField
                     autoComplete="userName"
                     name="userName"
+                    id="userName"
                     required
                     fullWidth
                     label="User Name"
@@ -118,6 +119,7 @@ export default function SignUp() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                id="signup"
                 sx={{
                   mt: 3,
                   mb: 2,
