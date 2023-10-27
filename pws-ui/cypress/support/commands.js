@@ -1,6 +1,6 @@
-Cypress.Commands.add("login", ({ username, password }) => {
+Cypress.Commands.add("login", ({ email, password }) => {
   cy.request("POST", `${Cypress.env("BACKEND")}/signin`, {
-    username,
+    email,
     password,
   }).then(({ body }) => {
     localStorage.setItem("loggedNoteappUser", JSON.stringify(body));

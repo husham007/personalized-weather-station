@@ -22,14 +22,13 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
-  const { checkStoredToken, username, signOut, setNotification } =
-    useAuthStore();
+  const { checkStoredToken, email, signOut, setNotification } = useAuthStore();
 
   useEffect(() => {
     checkStoredToken();
   }, []);
-
-  let user = username;
+  // console.log(email);
+  let user = email;
 
   let pages;
   if (!user) {
