@@ -7,3 +7,11 @@ Cypress.Commands.add("login", ({ email, password }) => {
     cy.visit("http://localhost:8081");
   });
 });
+
+Cypress.Commands.add("signup", ({ username, email, password }) => {
+  cy.request("POST", `${Cypress.env("BACKEND")}/signup`, {
+    username,
+    email,
+    password,
+  });
+});
