@@ -27,14 +27,7 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
-
     setNotification(true, response.message, response.status);
-
-    // if (successMessage.message) {
-    //   setNotification(true, successMessage.message, "success");
-    // } else {
-    //   setNotification(true, successMessage.message, "error");
-    // }
     navigate("/");
   };
 

@@ -58,8 +58,8 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    const successMessage = await signOut();
-    setNotification(true, successMessage.message, "success");
+    const response = await signOut();
+    setNotification(true, response.message, response.status);
     setTimeout(() => {
       navigate("/");
     }, 2000);

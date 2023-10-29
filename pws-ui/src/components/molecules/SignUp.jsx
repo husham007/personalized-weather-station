@@ -33,17 +33,14 @@ export default function SignUp() {
 
     const data = new FormData(event.currentTarget);
 
-    const successMessage = await signUp({
+    const response = await signUp({
       email: data.get("email"),
       username: data.get("userName"),
       password: data.get("password"),
     });
-    // console.log(successMessage.message);
-    setNotification(true, successMessage.message, "success");
 
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    setNotification(true, response.message, response.status);
+    navigate("/login");
   };
 
   return (

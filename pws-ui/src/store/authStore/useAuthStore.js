@@ -76,7 +76,6 @@ const useAuthStore = create((set) => {
         const initialTokenData = extractUserInfoFromToken(storedToken);
 
         set({
-          // username: initialTokenData ? initialTokenData.username : null,
           email: initialTokenData ? initialTokenData.email : null,
           id: initialTokenData ? initialTokenData.id : null,
           token: storedToken,
