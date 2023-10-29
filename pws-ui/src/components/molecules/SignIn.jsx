@@ -23,11 +23,11 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const successMessage = await signIn({
+    const response = await signIn({
       email: data.get("email"),
       password: data.get("password"),
     });
-    setNotification(true, successMessage.message, "success");
+    setNotification(true, response.message, response.status);
     navigate("/");
   };
 
@@ -83,6 +83,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
+              id="Sign-in"
               sx={{
                 mt: 3,
                 mb: 2,

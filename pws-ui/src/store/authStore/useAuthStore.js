@@ -2,7 +2,6 @@ import { create } from "zustand";
 import axios from "axios";
 import { extractUserInfoFromToken } from "../../misc/tokenUtils";
 
-// const AUTH_API_URL = "http://localhost:8080/api/auth";
 const AUTH_API_URL = (import.meta.env.VITE_BE_URL || "") + "/api/auth";
 
 // Create a Zustand store for authentication
@@ -26,7 +25,7 @@ const useAuthStore = create((set) => {
         const response = await axios.post(`${AUTH_API_URL}/signup`, userData); // Replace with your API endpoint
         const { username, id, email, token } = response.data;
         set({ username, email, id, token });
-        return { success: true, message: "Sign-up successful!" };
+        return { status: "success", message: "Sign-up successful!" };
       } catch (error) {
         return { success: false, message: "Sign-up failed. Please try again." };
       }
@@ -42,10 +41,10 @@ const useAuthStore = create((set) => {
         const { username, id, email, token } = response.data;
         set({ username, id, email, token });
         localStorage.setItem("token", token);
-        return { success: true, message: "Sign-in successful!" };
+        return { status: "success", message: "Sign-in successful!" };
       } catch (error) {
         return {
-          success: false,
+          status: "error",
           message: "Sign-in failed. Please check your credentials.",
         };
       }
@@ -76,8 +75,8 @@ const useAuthStore = create((set) => {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         const initialTokenData = extractUserInfoFromToken(storedToken);
+
         set({
-          username: initialTokenData ? initialTokenData.username : null,
           email: initialTokenData ? initialTokenData.email : null,
           id: initialTokenData ? initialTokenData.id : null,
           token: storedToken,

@@ -22,14 +22,13 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
-  const { checkStoredToken, username, signOut, setNotification } =
-    useAuthStore();
+  const { checkStoredToken, email, signOut, setNotification } = useAuthStore();
 
   useEffect(() => {
     checkStoredToken();
   }, []);
 
-  let user = username;
+  let user = email;
 
   let pages;
   if (!user) {
@@ -59,8 +58,8 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    const successMessage = await signOut();
-    setNotification(true, successMessage.message, "success");
+    const response = await signOut();
+    setNotification(true, response.message, response.status);
     setTimeout(() => {
       navigate("/");
     }, 2000);

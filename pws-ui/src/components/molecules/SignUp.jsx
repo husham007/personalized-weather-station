@@ -33,17 +33,14 @@ export default function SignUp() {
 
     const data = new FormData(event.currentTarget);
 
-    const successMessage = await signUp({
+    const response = await signUp({
       email: data.get("email"),
       username: data.get("userName"),
       password: data.get("password"),
     });
-    // console.log(successMessage.message);
-    setNotification(true, successMessage.message, "success");
 
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    setNotification(true, response.message, response.status);
+    navigate("/login");
   };
 
   return (
@@ -76,6 +73,7 @@ export default function SignUp() {
                   <TextField
                     autoComplete="userName"
                     name="userName"
+                    id="userName"
                     required
                     fullWidth
                     label="User Name"
@@ -118,6 +116,7 @@ export default function SignUp() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                id="signup"
                 sx={{
                   mt: 3,
                   mb: 2,
