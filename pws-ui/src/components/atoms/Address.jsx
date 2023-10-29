@@ -3,7 +3,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 
-import { Typography, Stack, Box, IconButton, Grid } from "@mui/material";
+import { Typography, IconButton, Grid } from "@mui/material";
 
 const Address = ({ address, phone, email, color }) => {
   return (

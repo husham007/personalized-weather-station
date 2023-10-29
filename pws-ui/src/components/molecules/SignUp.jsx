@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Avatar,
   Button,
@@ -15,12 +14,9 @@ import {
 } from "@mui/material";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
-
-import { useState } from "react";
 
 const defaultTheme = createTheme();
 
