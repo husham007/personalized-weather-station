@@ -13,7 +13,7 @@ import NotificationSnackBars from "./components/molecules/NotificationSnackBars.
 function App() {
   return (
     <>
-      <NotificationSnackBars  />
+      <NotificationSnackBars />
       <Box
         sx={{
           display: "flex",
@@ -23,7 +23,7 @@ function App() {
       >
         <CssBaseline />
         <Navbar />
-        {/* <Container component="main" sx={{ mb: 20 }}> */}
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
@@ -31,7 +31,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfile />} />
         </Routes>
-        {/* </Container> */}
+
         <Footer />
       </Box>
     </>

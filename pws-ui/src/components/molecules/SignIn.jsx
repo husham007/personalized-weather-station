@@ -23,11 +23,11 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const successMessage = await signIn({
+    const response = await signIn({
       email: data.get("email"),
       password: data.get("password"),
     });
-    setNotification(true, successMessage.message, "success");
+    setNotification(true, response.message, response.status);
     navigate("/");
   };
 
