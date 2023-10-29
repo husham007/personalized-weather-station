@@ -6,7 +6,6 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-
 import Map from "../atoms/Map";
 import Address from "../atoms/Address";
 

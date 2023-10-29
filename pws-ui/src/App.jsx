@@ -5,7 +5,7 @@ import Footer from "./components/organisms/Footer.jsx";
 import Contact from "./components/organisms/Contact.jsx";
 import UserProfile from "./components/organisms/UserProfile.jsx";
 import { Routes, Route } from "react-router-dom";
-import { Box, CssBaseline, Container } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import "./App.css";
 import Home from "../src/components/organisms/Home.jsx";
 import NotificationSnackBars from "./components/molecules/NotificationSnackBars.jsx";

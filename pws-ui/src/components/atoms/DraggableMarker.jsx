@@ -1,6 +1,6 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { useState, useRef, useMemo, useCallback, useEffect } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
 const center = {
   lat: 60.278,

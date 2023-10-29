@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from "react-leaflet";
-
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import DraggableMarker from "./DraggableMarker";
 import iconMarker from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
@@ -14,7 +7,6 @@ import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 const icon = L.icon({
   iconRetinaUrl: iconRetina,
   iconUrl: iconMarker,
-  // shadowUrl: iconShadow,
   iconSize: [20, 30],
 });
 
@@ -40,13 +32,11 @@ const Map = ({
         />
 
         {draggable ? (
-
           <>
             {position && (
               <DraggableMarker setPosition={setPosition} icon={icon} />
             )}
           </>
-
         ) : (
           <Marker position={markerPosition} icon={icon}>
             <Popup>
