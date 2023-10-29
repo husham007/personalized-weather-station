@@ -27,7 +27,7 @@ const Navbar = () => {
   useEffect(() => {
     checkStoredToken();
   }, []);
-  // console.log(email);
+
   let user = email;
 
   let pages;
