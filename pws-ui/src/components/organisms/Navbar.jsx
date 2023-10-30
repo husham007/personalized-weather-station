@@ -61,9 +61,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     const response = await signOut();
     setNotification(true, response.message, response.status);
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    navigate("/");
   };
 
   return (
@@ -181,13 +179,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Box sx={{ flexGrow: 0 }}>
+                <Box sx={{ flexGrow: 0 }} id="avatar">
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar
-                        alt="Remy Sharp"
-                        // src="/static/images/avatar/2.jpg"
-                      />
+                      <Avatar alt="Remy Sharp" />
                     </IconButton>
                   </Tooltip>
                   <Menu
@@ -210,7 +205,7 @@ const Navbar = () => {
                       <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
                     <MenuItem onClick={() => handleCloseUserMenu("logout")}>
-                      <Typography textAlign="center">Logout</Typography>
+                      <Typography textAlign="center" id="logout">Logout</Typography>
                     </MenuItem>
                   </Menu>
                 </Box>
