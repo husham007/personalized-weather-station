@@ -48,12 +48,14 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (action) => {
     setAnchorElUser(null);
-  };
 
-  const handleProfile = () => {
-    navigate("/profile");
+    if (action === "profile") {
+      navigate("/profile");
+    } else if (action === "logout") {
+      handleLogout();
+    }
   };
 
   const handleLogout = async () => {
@@ -190,7 +192,7 @@ const Navbar = () => {
                   </Tooltip>
                   <Menu
                     sx={{ mt: "45px" }}
-                    id="menu-appbar"
+                    id="menu-appbar-user"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
                       vertical: "top",
@@ -202,20 +204,12 @@ const Navbar = () => {
                       horizontal: "right",
                     }}
                     open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
+                    onClose={() => handleCloseUserMenu()}
                   >
-                    {/* {settings.map((setting) => (
-                    <MenuItem
-                    key={setting}
-                    onClick={() => handleCloseUserMenu(setting)}
-                    >
-                    <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))} */}
-                    <MenuItem onClick={handleProfile}>
+                    <MenuItem onClick={() => handleCloseUserMenu("profile")}>
                       <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleLogout}>
+                    <MenuItem onClick={() => handleCloseUserMenu("logout")}>
                       <Typography textAlign="center">Logout</Typography>
                     </MenuItem>
                   </Menu>
