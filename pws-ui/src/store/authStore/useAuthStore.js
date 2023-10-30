@@ -22,7 +22,7 @@ const useAuthStore = create((set) => {
     // Sign-up function
     signUp: async (userData) => {
       try {
-        const response = await axios.post(`${AUTH_API_URL}/signup`, userData); // Replace with your API endpoint
+        const response = await axios.post(`${AUTH_API_URL}/signup`, userData);
         const { username, id, email, token } = response.data;
         set({ username, email, id, token });
         return { status: "success", message: "Sign-up successful!" };

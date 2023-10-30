@@ -48,20 +48,20 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (action) => {
     setAnchorElUser(null);
-  };
 
-  const handleProfile = () => {
-    navigate("/profile");
+    if (action === "profile") {
+      navigate("/profile");
+    } else if (action === "logout") {
+      handleLogout();
+    }
   };
 
   const handleLogout = async () => {
     const response = await signOut();
     setNotification(true, response.message, response.status);
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    navigate("/");
   };
 
   return (
@@ -179,18 +179,15 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Box sx={{ flexGrow: 0 }}>
+                <Box sx={{ flexGrow: 0 }} id="avatar">
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar
-                        alt="Remy Sharp"
-                        // src="/static/images/avatar/2.jpg"
-                      />
+                      <Avatar alt="Remy Sharp" />
                     </IconButton>
                   </Tooltip>
                   <Menu
                     sx={{ mt: "45px" }}
-                    id="menu-appbar"
+                    id="menu-appbar-user"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
                       vertical: "top",
@@ -202,21 +199,13 @@ const Navbar = () => {
                       horizontal: "right",
                     }}
                     open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
+                    onClose={() => handleCloseUserMenu()}
                   >
-                    {/* {settings.map((setting) => (
-                    <MenuItem
-                    key={setting}
-                    onClick={() => handleCloseUserMenu(setting)}
-                    >
-                    <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))} */}
-                    <MenuItem onClick={handleProfile}>
+                    <MenuItem onClick={() => handleCloseUserMenu("profile")}>
                       <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleLogout}>
-                      <Typography textAlign="center">Logout</Typography>
+                    <MenuItem onClick={() => handleCloseUserMenu("logout")}>
+                      <Typography textAlign="center" id="logout">Logout</Typography>
                     </MenuItem>
                   </Menu>
                 </Box>
