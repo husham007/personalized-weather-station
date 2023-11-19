@@ -36,11 +36,12 @@ const useAuthStore = create((set) => {
       try {
         const response = await axios.post(
           `${AUTH_API_URL}/signin`,
-          credentials
+          credentials,
         );
-        const { username, id, email, token } = response.data;
-        set({ username, id, email, token });
-        localStorage.setItem("token", token);
+        const { username, id, email, accessToken } = response.data;
+        set({ username, id, email, token: accessToken });
+        localStorage.setItem("token", accessToken);
+
         return { status: "success", message: "Sign-in successful!" };
       } catch (error) {
         return {
