@@ -2,6 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 import { extractUserInfoFromToken } from "../../misc/tokenUtils";
 
+import axiosClient from "./axiosClient";
+
 const AUTH_API_URL = (import.meta.env.VITE_BE_URL || "") + "/api/auth";
 
 // Create a Zustand store for authentication
@@ -22,7 +24,7 @@ const useAuthStore = create((set) => {
     // Sign-up function
     signUp: async (userData) => {
       try {
-        const response = await axios.post(`${AUTH_API_URL}/signup`, userData);
+        const response = await axiosClient.post(`/signup`, userData);
         const { username, id, email, token } = response.data;
         set({ username, email, id, token });
         return { status: "success", message: "Sign-up successful!" };
@@ -34,10 +36,9 @@ const useAuthStore = create((set) => {
     // Sign-in function
     signIn: async (credentials) => {
       try {
-        const response = await axios.post(
-          `${AUTH_API_URL}/signin`,
-          credentials
-        );
+      
+        const response = await axiosClient.post("/signin", credentials);
+
         const { username, id, email, token } = response.data;
         set({ username, id, email, token });
         localStorage.setItem("token", token);
@@ -52,6 +53,7 @@ const useAuthStore = create((set) => {
 
     signOut: async () => {
       try {
+        const response = await axiosClient.post("/logout");
         set((state) => {
           return { username: null, token: null, email: null };
         });

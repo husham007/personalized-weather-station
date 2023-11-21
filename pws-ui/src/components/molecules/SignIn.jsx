@@ -27,6 +27,7 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    console.log(response);
     setNotification(true, response.message, response.status);
     navigate("/");
   };
