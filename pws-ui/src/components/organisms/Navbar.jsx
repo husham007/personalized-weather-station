@@ -21,16 +21,20 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
-  const { checkStoredToken, email, signOut, setNotification } = useAuthStore();
+  const { signOut, setNotification, user, getProfile, init, isLoading } =
+    useAuthStore();
 
   useEffect(() => {
-    checkStoredToken();
+    if (!user) {
+      getProfile();
+    }
   }, []);
 
-  let user = email;
-
   let pages;
-  if (!user) {
+
+  console.log(isLoading, user);
+
+  if (!isLoading && !user) {
     pages = ["contact"];
   } else {
     pages = ["contact", "favourites"];
@@ -60,7 +64,11 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     const response = await signOut();
-    setNotification(true, response.message, response.status);
+    if (response) {
+      setNotification(true, response.message, response.status);
+    } else {
+      setNotification(true, "Logout successful!", "success");
+    }
     navigate("/");
   };
 
@@ -205,7 +213,9 @@ const Navbar = () => {
                       <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
                     <MenuItem onClick={() => handleCloseUserMenu("logout")}>
-                      <Typography textAlign="center" id="logout">Logout</Typography>
+                      <Typography textAlign="center" id="logout">
+                        Logout
+                      </Typography>
                     </MenuItem>
                   </Menu>
                 </Box>

@@ -36,7 +36,9 @@ export default function SignUp() {
     });
 
     setNotification(true, response.message, response.status);
-    navigate("/login");
+    if (response) {
+      navigate("/login");
+    }
   };
 
   return (
