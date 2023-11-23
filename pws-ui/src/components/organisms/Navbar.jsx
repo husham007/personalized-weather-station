@@ -21,24 +21,34 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
-  const { signOut, setNotification, user, getProfile, init, isLoading } =
-    useAuthStore();
+  const {
+    signOut,
+    setNotification,
+    user,
+    getProfile,
+    init,
+    isLoading,
+    setIsLoading,
+  } = useAuthStore();
 
   useEffect(() => {
-    if (!user) {
-      getProfile();
-    }
+    setIsLoading(true);
+    const fetchData = async () => {
+      await getProfile();
+      setIsLoading(false);
+    };
+    fetchData();
   }, []);
 
   let pages;
 
-  console.log(isLoading, user);
-
-  if (!isLoading && !user) {
+  if (isLoading === false && !user) {
     pages = ["contact"];
-  } else {
+  } else if (!isLoading  && user) {
     pages = ["contact", "favourites"];
   }
+
+  console.log(isLoading, user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -129,11 +139,15 @@ const Navbar = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
+                {pages &&
+                  pages.map((page) => (
+                    <MenuItem
+                      key={page}
+                      onClick={() => handleCloseNavMenu(page)}
+                    >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
               </Menu>
             </Box>
             <ThunderstormIcon
@@ -160,17 +174,73 @@ const Navbar = () => {
               HOME
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={() => handleCloseNavMenu(page)}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
+              {pages &&
+                pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={() => handleCloseNavMenu(page)}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                ))}
             </Box>
-            {!user ? (
+
+            <>
+              {!isLoading && !user && (
+                <>
+                  <Button
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    onClick={() => navigate("/login")}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    onClick={() => navigate("/signup")}
+                  >
+                    Signup
+                  </Button>
+                </>
+              )}
+              {!isLoading && user && (
+                <>
+                  <Box sx={{ flexGrow: 0 }} id="avatar">
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar alt="Remy Sharp" />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: "45px" }}
+                      id="menu-appbar-user"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={() => handleCloseUserMenu()}
+                    >
+                      <MenuItem onClick={() => handleCloseUserMenu("profile")}>
+                        <Typography textAlign="center">Profile</Typography>
+                      </MenuItem>
+                      <MenuItem onClick={() => handleCloseUserMenu("logout")}>
+                        <Typography textAlign="center" id="logout">
+                          Logout
+                        </Typography>
+                      </MenuItem>
+                    </Menu>
+                  </Box>
+                </>
+              )}
+            </>
+            {/* {!isLoading && !user ? (
               <>
                 <Button
                   sx={{ my: 2, color: "white", display: "block" }}
@@ -185,7 +255,7 @@ const Navbar = () => {
                   Signup
                 </Button>
               </>
-            ) : (
+            ) : !isLoading && user ? (
               <>
                 <Box sx={{ flexGrow: 0 }} id="avatar">
                   <Tooltip title="Open settings">
@@ -220,7 +290,7 @@ const Navbar = () => {
                   </Menu>
                 </Box>
               </>
-            )}
+            ) : null} */}
           </Toolbar>
         </Container>
       </AppBar>
