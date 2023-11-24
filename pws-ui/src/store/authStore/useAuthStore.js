@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axiosClient from "./axiosClient";
+import axiosClient from "../../axiosClient";
 
 const useAuthStore = create((set) => ({
   user: undefined,
