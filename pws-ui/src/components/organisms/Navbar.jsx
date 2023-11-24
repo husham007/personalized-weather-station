@@ -48,7 +48,7 @@ const Navbar = () => {
     pages = ["contact", "favourites"];
   }
 
-  console.log(isLoading, user);
+  // console.log(isLoading, user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
