@@ -10,8 +10,6 @@ import useAuthStore from "../../store/authStore/useAuthStore";
 import axiosClientWeather from "../../axiosClientWeather";
 
 const WeatherGraphCard = ({ weatherData, cityName }) => {
-  const [favouriteCities, setFavouriteCities] = useState();
-
   const { user, isLoading, setNotification } = useAuthStore();
 
   const handleFavourite = () => {
