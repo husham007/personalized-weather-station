@@ -9,12 +9,11 @@ import WeatherGraphCard from "../atoms/WeatherGraphCard";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
-
+  const [cityName, setCityName] = useState("");
   const [radioOption, setRadioOption] = useState("city");
   const [position, setPosition] = useState([
     60.19928562367708, 24.93441320897156,
   ]);
-  const [cityCoOrdinates, setCityCoOrdinates] = useState();
   const [weatherData, setWeatherData] = useState(null);
 
   const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
@@ -23,40 +22,28 @@ const Home = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const cityName = data.get("serachQuery");
-
-    const Geocoding_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${Open_Weather_API}`;
-
-    axios
-      .get(Geocoding_API_URL)
-      .then((res) => {
-        setCityCoOrdinates(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
+    const city = data.get("serachQuery");
+    setCityName(city);
     setTestQuery("");
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${cityCoOrdinates[0].lat}&lon=${cityCoOrdinates[0].lon}&appid=${Open_Weather_API}`;
+      const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
 
       try {
         const response = await axios.get(WeatherUrl);
-        console.log(response.data);
+        // console.log(response.data);
         setWeatherData(response.data);
       } catch (error) {
         console.log(err);
       }
     };
 
-    if (cityCoOrdinates) {
+    if (cityName) {
       fetchData();
     }
-  }, [cityCoOrdinates]);
+  }, [cityName]);
 
   const handleRadioOption = (event) => {
     setRadioOption(event.target.value);
@@ -112,7 +99,9 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      {radioOption === "city" && <WeatherGraphCard weatherData={weatherData} />}
+      {radioOption === "city" && (
+        <WeatherGraphCard weatherData={weatherData} cityName={cityName} />
+      )}
       <Grid
         container
         sx={{
