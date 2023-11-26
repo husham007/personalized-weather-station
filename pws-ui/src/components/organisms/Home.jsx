@@ -11,7 +11,6 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
-  const [cityName, setCityName] = useState("");
   const [radioOption, setRadioOption] = useState("city");
   const [position, setPosition] = useState([
     60.19928562367708, 24.93441320897156,
@@ -22,32 +21,10 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     const city = data.get("serachQuery");
     weatherAPI(city);
-    setCityName(city);
     setTestQuery("");
   };
-
-  console.log(weatherData);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
-
-  //     try {
-  //       const response = await axios.get(WeatherUrl);
-  //       // console.log(response.data);
-  //       setWeatherData(response.data);
-  //     } catch (error) {
-  //       console.log(err);
-  //     }
-  //   };
-
-  //   if (cityName) {
-  //     fetchData();
-  //   }
-  // }, [cityName]);
 
   const handleRadioOption = (event) => {
     setRadioOption(event.target.value);
