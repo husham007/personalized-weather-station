@@ -22,6 +22,17 @@ Personalized Weather Station comes with a set of features to enhance your weathe
 - **User-friendly Interface:** Navigate through the application effortlessly with an intuitive and user-friendly design.,
 
 
+
+# Backend Repositories
+
+To support the functionality of Personalized Weather Station, we have two backend repositories:
+
+- **User Authentication API:** Handles user registration and authentication. You can find the repository [![Auth API](https://img.shields.io/badge/Auth_API-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/husham007/auth-api).
+
+- **Weather API:** Provides weather data for the application. You can find the repository [![Weather API](https://img.shields.io/badge/Weather_API-87CEEB?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adhanif/weather-api).
+
+
+
 # Tech Stack
 
 ### Frontend
@@ -46,6 +57,28 @@ Personalized Weather Station comes with a set of features to enhance your weathe
 
 These technologies work synergistically to create a robust and user-friendly web application, providing a delightful experience for both developers and end-users.
 
+# Cypress Testing
+
+Personalized Weather Station comes with end-to-end testing powered by Cypress. Cypress is a powerful JavaScript-based testing framework that allows us to ensure the functionality and user interactions of the application are working as expected.
+
+## Running Cypress Tests
+
+To run Cypress tests locally, follow these steps:
+
+1. Start the backend server (User Authentication API) with the following command:
+
+   ```bash
+   npm run start:test
+   
+2. Start the development app with the following command to launch the application locally.
+   ```bash
+   npm run cypress:open
+   
+3. After running the npm run cypress:open command, a new window will automatically open. In the Cypress Test Runner window, locate and click on **E2E Testing** from the list of available test files. Additionally, choose your preferred browser (e.g., Chrome) from the dropdown menu.
+4. With "E2E Testing" selected and your chosen browser specified, kick off the testing process by clicking the "Run X tests" button, where X represents the number of tests available for execution. If using Chrome, it might specifically say **Start E2E Testing in Chrome**
+5. Start the testing by clicking **Start E2E Testing in Chrome**.
+6. Cypress will now  start executing the end-to-end tests against your application. You'll witness the tests running in real-time within the Cypress Test Runner window
+   
 
 # Installation
 
@@ -66,7 +99,7 @@ To set up Personalized Weather Station on your local environment, follow these s
    ```bash
    npm install
 
-4. Start the development server: Run "npm run dev" to launch the application locally.
+4. Start the development app: Run "npm run dev" to launch the application locally.
 
    ```bash
    npm run dev
@@ -88,107 +121,119 @@ To run this project, you will need to add the following environment variables to
 
 # Project Folder Structure
 
-- 📁 pws-ui
-  - 📂 cypress
-    - 📁 downloads
-    - 📁 e2e
-      - 📄 Weather.cy.js
-    - 📁 fixtures
-      - 📄 example.json
-    - 📁 support
-      - 📄 commands.js
-      - 📄 e2e.js
-  - 📂 dist
-    - 📁 assets
-      - 🖼️ hero-526e3d3e.jpg
-      - 📄 index-5c4406df.js
-      - 📄 index-69420918.css
-      - 🖼️ Login_illustration-07db4881.svg
-      - 🖼️ Signup_illustration-fa08772c.svg
-    - 📄 index.html
-    - 🖼️ storm.png
-    - 🖼️ vite.svg
-  - 📂 public
-    - 🖼️ storm.png
-    - 🖼️ vite.svg
-    - 📄 _redirects
-  - 📂 src
-    - 📁 assets
-      - 📁 images
-        - 🖼️ hero.jpg
-        - 🖼️ Login_illustration.svg
-        - 🖼️ react.svg
-        - 🖼️ Signup_illustration.svg
-    - 📁 components
-      - 📁 atoms
-        - 📄 Address.jsx
-        - 📄 DraggableMarker.jsx
-        - 📄 Info.jsx
-        - 📄 Map.jsx
-        - 📄 RadioGroup.jsx
-        - 📄 SocialMediaIcons.jsx
-        - 📄 Subscribe.jsx
-      - 📁 molecules
-        - 📄 ContactForm.jsx
-        - 📄 MapCard.jsx
-        - 📄 NotificationSnackBars.jsx
-        - 📄 Searchbar.jsx
-        - 📄 SignIn.jsx
-        - 📄 SignUp.jsx
-      - 📁 organisms
-        - 📄 Contact.jsx
-        - 📄 Footer.jsx
-        - 📄 Home.jsx
-        - 📄 LoginPage.jsx
-        - 📄 Navbar.jsx
-        - 📄 SignUpPage.jsx
-        - 📄 UserProfile.jsx
-    - 📁 misc
-      - 📄 tokenUtils.js
-    - 📁 store
-      - 📁 authStore
-        - 📄 useAuthStore.js
-    - 📁 stories
-      - 📁 assets
-        - 🖼️ accessibility.png
-        - 🖼️ accessibility.svg
-        - 🖼️ addon-library.png
-        - 🖼️ assets.png
-        - 🖼️ context.png
-        - 🖼️ discord.svg
-        - 🖼️ docs.png
-        - 🖼️ figma-plugin.png
-        - 🖼️ github.svg
-        - 🖼️ share.png
-        - 🖼️ styling.png
-        - 🖼️ testing.png
-        - 🖼️ theming.png
-        - 🖼️ tutorials.svg
-        - 🖼️ youtube.svg
-      - 📄 button.css
-      - 📄 Button.jsx
-      - 📄 Button.stories.js
-      - 📄 Configure.mdx
-      - 📄 header.css
-      - 📄 Header.jsx
-      - 📄 Header.stories.js
-      - 📄 Login.stories.js
-      - 📄 Map.stories.js
-      - 📄 page.css
-      - 📄 Page.jsx
-      - 📄 Page.stories.js
-      - 📄 SignIn.stories.js
-      - 📄 SignUpPage.stories.js
-    - 📄 App.css
-    - 📄 App.jsx
-    - 📄 index.css
-    - 📄 main.jsx
-  - 📄 cypress.config.js
-  - 📄 index.html
-  - 📄 package-lock.json
-  - 📄 package.json
-  - 📄 README.md
-  - 📄 vite.config.js
+pws-ui                                     
+├─ 📁 cypress                                 
+│  ├─ 📁 downloads                            
+│  ├─ 📁 e2e                                  
+│  │  ├─ 📄 FrontPage.cy.js                   
+│  │  ├─ 📄 LoginFails.cy.js                  
+│  │  ├─ 📄 LoginSuccessful.cy.js             
+│  │  ├─ 📄 Logout.cy.js                      
+│  │  ├─ 📄 SignUp.cy.js                      
+│  │  └─ 📄 Weather.cy.js                     
+│  ├─ 📁 fixtures                             
+│  │  └─ 📄 example.json                      
+│  └─ 📁 support                              
+│     ├─ 📄 commands.js                       
+│     └─ 📄 e2e.js                            
+├─ 📁 dist                                    
+│  ├─ 📁 assets                               
+│  │  ├─ 📄 hero-526e3d3e.jpg                 
+│  │  ├─ 📄 index-5c4406df.js                 
+│  │  ├─ 📄 index-69420918.css                
+│  │  ├─ 📄 Login_illustration-07db4881.svg   
+│  │  └─ 📄 Signup_illustration-fa08772c.svg  
+│  ├─ 📄 index.html                           
+│  ├─ 📄 storm.png                            
+│  └─ 📄 vite.svg                             
+├─ 📁 public                                  
+│  ├─ 📄 storm.png                            
+│  ├─ 📄 vite.svg                             
+│  └─ 📄 _redirects                           
+├─ 📁 src                                     
+│  ├─ 📁 assets                               
+│  │  └─ 📁 images                            
+│  │     ├─ 📄 hero.jpg                       
+│  │     ├─ 📄 Login_illustration.svg         
+│  │     ├─ 📄 react.svg                      
+│  │     └─ 📄 Signup_illustration.svg        
+│  ├─ 📁 components                           
+│  │  ├─ 📁 atoms                             
+│  │  │  ├─ 📄 Address.jsx                    
+│  │  │  ├─ 📄 DraggableMarker.jsx            
+│  │  │  ├─ 📄 Info.jsx                       
+│  │  │  ├─ 📄 Map.jsx                        
+│  │  │  ├─ 📄 RadioGroup.jsx                 
+│  │  │  ├─ 📄 SocialMediaIcons.jsx           
+│  │  │  ├─ 📄 Subscribe.jsx                  
+│  │  │  └─ 📄 WeatherGraphCard.jsx           
+│  │  ├─ 📁 molecules                         
+│  │  │  ├─ 📄 ContactForm.jsx                
+│  │  │  ├─ 📄 FavouriteCard.jsx              
+│  │  │  ├─ 📄 MapCard.jsx                    
+│  │  │  ├─ 📄 NotificationSnackBars.jsx      
+│  │  │  ├─ 📄 Searchbar.jsx                  
+│  │  │  ├─ 📄 SignIn.jsx                     
+│  │  │  └─ 📄 SignUp.jsx                     
+│  │  └─ 📁 organisms                         
+│  │     ├─ 📄 Contact.jsx                    
+│  │     ├─ 📄 Favourites.jsx                 
+│  │     ├─ 📄 Footer.jsx                     
+│  │     ├─ 📄 Home.jsx                       
+│  │     ├─ 📄 LoginPage.jsx                  
+│  │     ├─ 📄 Navbar.jsx                     
+│  │     ├─ 📄 SignUpPage.jsx                 
+│  │     └─ 📄 UserProfile.jsx                
+│  ├─ 📁 misc                                 
+│  │  └─ 📄 tokenUtils.js                     
+│  ├─ 📁 store                                
+│  │  └─ 📁 authStore                         
+│  │     ├─ 📄 useAuthStore.js                
+│  │     └─ 📄 useWeatherStore.js             
+│  ├─ 📁 stories                              
+│  │  ├─ 📁 assets                            
+│  │  │  ├─ 📄 accessibility.png              
+│  │  │  ├─ 📄 accessibility.svg              
+│  │  │  ├─ 📄 addon-library.png              
+│  │  │  ├─ 📄 assets.png                     
+│  │  │  ├─ 📄 context.png                    
+│  │  │  ├─ 📄 discord.svg                    
+│  │  │  ├─ 📄 docs.png                       
+│  │  │  ├─ 📄 figma-plugin.png               
+│  │  │  ├─ 📄 github.svg                     
+│  │  │  ├─ 📄 share.png                      
+│  │  │  ├─ 📄 styling.png                    
+│  │  │  ├─ 📄 testing.png                    
+│  │  │  ├─ 📄 theming.png                    
+│  │  │  ├─ 📄 tutorials.svg                  
+│  │  │  └─ 📄 youtube.svg                    
+│  │  ├─ 📄 button.css                        
+│  │  ├─ 📄 Button.jsx                        
+│  │  ├─ 📄 Button.stories.js                 
+│  │  ├─ 📄 Configure.mdx                     
+│  │  ├─ 📄 header.css                        
+│  │  ├─ 📄 Header.jsx                        
+│  │  ├─ 📄 Header.stories.js                 
+│  │  ├─ 📄 Login.stories.js                  
+│  │  ├─ 📄 Map.stories.js                    
+│  │  ├─ 📄 page.css                          
+│  │  ├─ 📄 Page.jsx                          
+│  │  ├─ 📄 Page.stories.js                   
+│  │  ├─ 📄 SignIn.stories.js                 
+│  │  └─ 📄 SignUpPage.stories.js             
+│  ├─ 📄 App.css                              
+│  ├─ 📄 App.jsx                              
+│  ├─ 📄 axiosClient.js                       
+│  ├─ 📄 axiosClientWeather.js                
+│  ├─ 📄 index.css                            
+│  └─ 📄 main.jsx                             
+├─ 📄 cypress.config.js                       
+├─ 📄 index.html                              
+├─ 📄 package-lock.json                       
+├─ 📄 package.json                            
+├─ 📄 README.md                               
+└─ 📄 vi
+
 
 
 
