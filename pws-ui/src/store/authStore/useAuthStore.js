@@ -14,11 +14,25 @@ const useAuthStore = create((set) => ({
   weatherAPI: async (cityName) => {
     const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
+    
     try {
       const response = await axios.get(WeatherUrl);
       set({ weatherData: response.data });
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  //signup
+
+  signUp: async (userData) => {
+    try {
+      const response = await axiosClient.post(`/signup`, userData);
+      const { username, id, email, token } = response.data;
+      set({ username, email, id, token });
+      return { status: "success", message: "Sign-up successful!" };
+    } catch (error) {
+      return { success: false, message: "Sign-up failed. Please try again." };
     }
   },
 
