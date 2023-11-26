@@ -6,6 +6,7 @@ import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 import Map from "../atoms/Map";
 import axios from "axios";
 import WeatherGraphCard from "../atoms/WeatherGraphCard";
+import useAuthStore from "../../store/authStore/useAuthStore";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
@@ -14,7 +15,9 @@ const Home = () => {
   const [position, setPosition] = useState([
     60.19928562367708, 24.93441320897156,
   ]);
-  const [weatherData, setWeatherData] = useState(null);
+  // const [weatherData, setWeatherData] = useState(null);
+
+  const { weatherAPI, weatherData } = useAuthStore();
 
   const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
   // console.log(textQuery);
@@ -23,27 +26,29 @@ const Home = () => {
     const data = new FormData(event.currentTarget);
 
     const city = data.get("serachQuery");
+    weatherAPI(city);
     setCityName(city);
     setTestQuery("");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
 
-      try {
-        const response = await axios.get(WeatherUrl);
-        // console.log(response.data);
-        setWeatherData(response.data);
-      } catch (error) {
-        console.log(err);
-      }
-    };
+  //     try {
+  //       const response = await axios.get(WeatherUrl);
+  //       // console.log(response.data);
+  //       setWeatherData(response.data);
+  //     } catch (error) {
+  //       console.log(err);
+  //     }
+  //   };
 
-    if (cityName) {
-      fetchData();
-    }
-  }, [cityName]);
+  //   if (cityName) {
+  //     fetchData();
+  //   }
+  // }, [cityName]);
 
   const handleRadioOption = (event) => {
     setRadioOption(event.target.value);
