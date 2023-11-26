@@ -4,9 +4,10 @@ import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 import Map from "../atoms/Map";
-import axios from "axios";
+
 import WeatherGraphCard from "../atoms/WeatherGraphCard";
-import useAuthStore from "../../store/authStore/useAuthStore";
+
+import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
@@ -15,12 +16,9 @@ const Home = () => {
   const [position, setPosition] = useState([
     60.19928562367708, 24.93441320897156,
   ]);
-  // const [weatherData, setWeatherData] = useState(null);
 
-  const { weatherAPI, weatherData } = useAuthStore();
+  const { weatherAPI, weatherData } = useWeatherStore();
 
-  const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
-  // console.log(textQuery);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -31,7 +29,8 @@ const Home = () => {
     setTestQuery("");
   };
 
-  
+  console.log(weatherData);
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
@@ -104,9 +103,7 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      {radioOption === "city" && (
-        <WeatherGraphCard weatherData={weatherData} cityName={cityName} />
-      )}
+      {radioOption === "city" && <WeatherGraphCard />}
       <Grid
         container
         sx={{
