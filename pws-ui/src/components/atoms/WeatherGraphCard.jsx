@@ -8,9 +8,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
 import axiosClientWeather from "../../axiosClientWeather";
+import useWeatherStore from "../../store/authStore/useWeatherStore";
 
-const WeatherGraphCard = ({ weatherData, cityName }) => {
+const WeatherGraphCard = ({}) => {
   const { user, isLoading, setNotification } = useAuthStore();
+  const { weatherData, cityName } = useWeatherStore();
 
   const handleFavourite = () => {
     axiosClientWeather

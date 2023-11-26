@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axiosClient from "../../axiosClient";
+import axios from "axios";
 
 const useAuthStore = create((set) => ({
   user: undefined,
@@ -7,6 +8,20 @@ const useAuthStore = create((set) => ({
   setIsLoading: (isLoading) => {
     set({ isLoading });
   },
+
+  weatherData: null,
+
+  weatherAPI: async (cityName) => {
+    const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
+    const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
+    try {
+      const response = await axios.get(WeatherUrl);
+      set({ weatherData: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   // Sign-in function
   signIn: async (credentials) => {
     try {

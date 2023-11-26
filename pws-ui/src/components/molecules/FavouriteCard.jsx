@@ -9,11 +9,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
 import axiosClientWeather from "../../axiosClientWeather";
+import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const FavouriteCard = ({ favourite }) => {
   const [weatherData, setWeatherData] = useState(null);
   const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
   const { setNotification } = useAuthStore();
+  const { deleteFavourite } = useWeatherStore();
 
   useEffect(() => {
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${favourite.cityname}&appid=${Open_Weather_API}&units=metric`;
@@ -29,18 +31,11 @@ const FavouriteCard = ({ favourite }) => {
   }, []);
 
   const handleDelete = () => {
-    axiosClientWeather
-      .delete(`/${favourite._id}`)
-      .then((res) => {
-        setNotification(true, res.data.message, "success");
-        console.log(res.data.message);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    deleteFavourite(favourite._id);
+    setNotification(true, `${favourite.cityname} has been deleted`, "success");
   };
 
-  //   console.log(favourite)
+ 
 
   return (
     <>
