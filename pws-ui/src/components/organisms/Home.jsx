@@ -4,17 +4,14 @@ import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
 import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 import Map from "../atoms/Map";
-
 import WeatherGraphCard from "../atoms/WeatherGraphCard";
-
+import WeatherGraphCardCo from "../atoms/WeatherGraphCardCo";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
-  const [position, setPosition] = useState([
-    60.19928562367708, 24.93441320897156,
-  ]);
+ 
 
   const { weatherAPI, weatherData } = useWeatherStore();
 
@@ -95,11 +92,14 @@ const Home = () => {
       >
         <Grid item xs={12} sm={8} md={8}>
           {radioOption === "map" && (
-            <Map
-              draggable="yes"
-              setPosition={setPosition}
-              position={position}
-            />
+            <>
+              <Map
+                draggable="yes"
+                // setPosition={setPosition}
+                // position={position}
+              />
+              <WeatherGraphCardCo />
+            </>
           )}
         </Grid>
       </Grid>

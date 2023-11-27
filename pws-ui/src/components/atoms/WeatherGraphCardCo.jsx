@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -10,11 +10,9 @@ import useAuthStore from "../../store/authStore/useAuthStore";
 import axiosClientWeather from "../../axiosClientWeather";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
-const WeatherGraphCard = () => {
+const WeatherGraphCardCo = () => {
   const { user, isLoading, setNotification } = useAuthStore();
-  const { weatherData, cityName } = useWeatherStore();
-
-  // console.log(weatherData);
+  const { weatherCorData, cityName, position } = useWeatherStore();
 
   const handleFavourite = () => {
     axiosClientWeather
@@ -56,23 +54,21 @@ const WeatherGraphCard = () => {
           md={6}
           textAlign={{ xs: "center", sm: "left" }}
         >
-          {weatherData ? (
+          {weatherCorData && (
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 sx={{ height: 140 }}
-                image={`https://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}@2x.png`}
+                image={`https://openweathermap.org/img/wn/${weatherCorData.weather[0].icon}@2x.png`}
                 title="green iguana"
               />
               <CardContent>
                 <Typography variant="body2">
-                  Weather in {weatherData.city.name}
+                  Weather in {weatherCorData.name}
                 </Typography>
                 <Typography variant="h3">
-                  {Math.round(weatherData.list[0].main.temp)}°C{" "}
+                  {Math.round(weatherCorData.main.temp)}°C{" "}
                 </Typography>
-                <Typography>
-                  wind {weatherData.list[0].wind.speed} km/h
-                </Typography>
+                <Typography>wind {weatherCorData.wind.speed} km/h</Typography>
               </CardContent>
               <CardActions>
                 {!isLoading && user && (
@@ -82,14 +78,13 @@ const WeatherGraphCard = () => {
                     </Button>
                   </>
                 )}
-                {/* <Button size="small">Learn More</Button> */}
               </CardActions>
             </Card>
-          ) : null}
+          )}
         </Grid>
       </Grid>
     </>
   );
 };
 
-export default WeatherGraphCard;
+export default WeatherGraphCardCo;
