@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import DraggableMarker from "./DraggableMarker";
 import iconMarker from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const icon = L.icon({
   iconRetinaUrl: iconRetina,
@@ -10,14 +11,13 @@ const icon = L.icon({
   iconSize: [20, 30],
 });
 
-const Map = ({
-  company,
-  city,
-  markerPosition,
-  draggable,
-  setPosition,
-  position,
-}) => {
+const Map = ({ company, city, markerPosition, draggable }) => {
+  // const [position, setPosition] = useState([
+  //   60.19928562367708, 24.93441320897156,
+  // ]);
+
+  const { position } = useWeatherStore();
+
   return (
     <div>
       <MapContainer
@@ -32,11 +32,7 @@ const Map = ({
         />
 
         {draggable ? (
-          <>
-            {position && (
-              <DraggableMarker setPosition={setPosition} icon={icon} />
-            )}
-          </>
+          <>{position && <DraggableMarker icon={icon} />}</>
         ) : (
           <Marker position={markerPosition} icon={icon}>
             <Popup>
