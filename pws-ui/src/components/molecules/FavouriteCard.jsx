@@ -17,11 +17,18 @@ const FavouriteCard = ({ favourite }) => {
   const { setNotification } = useAuthStore();
   const { deleteFavourite } = useWeatherStore();
 
+  // console.log(favourite.coordinates[0]);
+
   useEffect(() => {
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${favourite.cityname}&appid=${Open_Weather_API}&units=metric`;
 
+    const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${favourite.coordinates[0]}&lon=${favourite.coordinates[1]}&appid=${Open_Weather_API}&units=metric`;
+
+    // const Url =
+    //   typeof favourite.cityname === "string" ? WeatherUrl : WeatherUrlCor;
+
     axios
-      .get(WeatherUrl)
+      .get(WeatherUrlCor)
       .then((res) => {
         setWeatherData(res.data);
       })
@@ -34,8 +41,6 @@ const FavouriteCard = ({ favourite }) => {
     deleteFavourite(favourite._id);
     setNotification(true, `${favourite.cityname} has been deleted`, "success");
   };
-
- 
 
   return (
     <>
@@ -63,19 +68,17 @@ const FavouriteCard = ({ favourite }) => {
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 sx={{ height: 140 }}
-                image={`https://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}@2x.png`}
+                image={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                 title="green iguana"
               />
               <CardContent>
                 <Typography variant="body2">
-                  Weather in {weatherData.city.name}
+                  Weather in {weatherData.name}
                 </Typography>
                 <Typography variant="h3">
-                  {Math.round(weatherData.list[0].main.temp)}°C{" "}
+                  {Math.round(weatherData.main.temp)}°C{" "}
                 </Typography>
-                <Typography>
-                  wind {weatherData.list[0].wind.speed} km/h
-                </Typography>
+                <Typography>wind {weatherData.wind.speed} km/h</Typography>
               </CardContent>
               <CardActions>
                 <Button size="small">Add to Home</Button>

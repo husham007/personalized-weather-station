@@ -13,6 +13,7 @@ const Subscribe = () => {
     <>
       <Grid>
         <TextField
+          disabled
           variant="outlined"
           label="Email"
           size="small"
@@ -22,12 +23,13 @@ const Subscribe = () => {
 
         <Button
           variant="contained"
+          disabled
           sx={{
+            background: "white",
             color: "black",
             padding: "7.7px",
-            bgcolor: "white",
-            "&:hover": {
-              bgcolor: "secondary.main",
+            "&:disabled": {
+              background: "grey",
               color: "white",
             },
           }}

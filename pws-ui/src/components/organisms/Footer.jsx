@@ -7,9 +7,6 @@ import { Box, Grid } from "@mui/material";
 const Footer = () => {
   return (
     <Box
-      // sx={{
-      //   marginTop: "20rem",
-      // }}
       sx={{
         mt: "auto",
       }}
