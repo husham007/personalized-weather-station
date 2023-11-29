@@ -6,20 +6,22 @@ import ControlledRadioButtonsGroup from "../atoms/RadioGroup";
 import Map from "../atoms/Map";
 import WeatherVisualization from "../atoms/WeatherGraph.jsx";
 import useAuthStore from "../../store/authStore/useAuthStore.js";
+import WeatherGraphCard from "../atoms/WeatherGraphCard";
+import WeatherGraphCardCo from "../atoms/WeatherGraphCardCo";
+import useWeatherStore from "../../store/authStore/useWeatherStore";
+
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
-  const [position, setPosition] = useState([
-    60.19928562367708, 24.93441320897156,
-  ]);
-  const { token } = useAuthStore();
+
+
+  const { weatherAPI, weatherData } = useWeatherStore();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      query: data.get("serachQuery"),
-    });
+    const city = data.get("serachQuery");
+    weatherAPI(city);
     setTestQuery("");
   };
 
@@ -77,7 +79,7 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      {token !== undefined && <WeatherVisualization />}
+      {radioOption === "city" && <WeatherGraphCard />}
       <Grid
         container
         sx={{
@@ -92,11 +94,14 @@ const Home = () => {
       >
         <Grid item xs={12} sm={8} md={8}>
           {radioOption === "map" && (
-            <Map
-              draggable="yes"
-              setPosition={setPosition}
-              position={position}
-            />
+            <>
+              <Map
+                draggable="yes"
+                // setPosition={setPosition}
+                // position={position}
+              />
+              <WeatherGraphCardCo />
+            </>
           )}
         </Grid>
       </Grid>

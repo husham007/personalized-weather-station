@@ -2,15 +2,18 @@ import React from "react";
 import "leaflet/dist/leaflet.css";
 import { useState, useRef, useMemo, useEffect } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
+import useWeatherStore from "../../store/authStore/useWeatherStore";
+
 const center = {
   lat: 60.278,
   lng: 24.865,
 };
 
-const DraggableMarker = ({ icon, setPosition }) => {
+const DraggableMarker = ({ icon }) => {
   const [markerDragPosition, setMarkerDragPosition] = useState(center);
-
   const [currentLocation, setCurrentLocation] = useState(null);
+
+  const { setPosition, weatherAPI, position } = useWeatherStore();
 
   const map = useMapEvents({
     click(e) {
@@ -19,18 +22,20 @@ const DraggableMarker = ({ icon, setPosition }) => {
 
       setCurrentLocation(newLocation);
       setMarkerDragPosition(newLocation);
-      setPosition([newLocation.lat, newLocation.lng]);
-      // map.flyTo(newLocation, map.getZoom());
+      setPosition(newLocation.lat, newLocation.lng);
+      weatherAPI([newLocation.lat, newLocation.lng]);
+      map.flyTo(newLocation, map.getZoom());
     },
     locationfound(e) {
       const userLocation = e.latlng;
       setCurrentLocation(userLocation);
       setMarkerDragPosition(userLocation);
-      setPosition([userLocation.lat, userLocation.lng]);
+      weatherAPI([userLocation.lat, userLocation.lng]);
+      setPosition(userLocation.lat, userLocation.lng);
       map.flyTo(userLocation, map.getZoom());
     },
   });
-  // console.log(markerDragPosition);
+
   const markerRef = useRef(null);
 
   const eventHandlers = useMemo(

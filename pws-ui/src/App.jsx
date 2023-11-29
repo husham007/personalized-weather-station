@@ -9,6 +9,7 @@ import { Box, CssBaseline } from "@mui/material";
 import "./App.css";
 import Home from "../src/components/organisms/Home.jsx";
 import NotificationSnackBars from "./components/molecules/NotificationSnackBars.jsx";
+import Favourites from "./components/organisms/Favourites.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/favourites" element={<Favourites />} />
         </Routes>
 
         <Footer />
