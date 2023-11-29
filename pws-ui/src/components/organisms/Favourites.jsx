@@ -12,7 +12,6 @@ const Favourites = () => {
     userFavourites();
   }, []);
 
-
   return (
     <>
       <Grid sx={{ marginBottom: "10rem" }}>

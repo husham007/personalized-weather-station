@@ -11,14 +11,16 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
+
+  const { weatherAPI, weatherData, geoCodingAPI,  } =
+    useWeatherStore();
+
  
-
-  const { weatherAPI, weatherData } = useWeatherStore();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
+   
     weatherAPI(city);
     setTestQuery("");
   };

@@ -14,10 +14,29 @@ const useWeatherStore = create((set) => ({
     set({ position: [lat, lng] });
   },
 
+  geocodingCorData: null,
+
   // weatherAPICo:
+
+  geoCodingAPI: async (cityName) => {
+    const API_KEY = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
+
+    try {
+      const geoCodingAPIApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${1}&appid=${API_KEY}`;
+      const response = await axios.get(ApiUrl);
+      console.log(response.data[0].lat);
+      set({ geocodingCorData: response.data });
+    } catch (error) {}
+  },
 
   weatherAPI: async (cityName) => {
     const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
+
+    const geoCodingCorUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${1}&appid=${Open_Weather_API}`;
+
+    const geoCodingCityUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${
+      cityName[0]
+    }&lon=${cityName[1]}&limit=${1}&appid=${Open_Weather_API}`;
 
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
 
@@ -26,11 +45,26 @@ const useWeatherStore = create((set) => ({
     try {
       if (typeof cityName === "string") {
         const response = await axios.get(WeatherUrl);
-        set({ weatherData: response.data, cityName: cityName });
+        const responseGeoCoding = await axios.get(geoCodingCorUrl);
+
+        set({
+          weatherData: response.data,
+          cityName: cityName,
+          coordinates: [
+            responseGeoCoding.data[0].lat,
+            responseGeoCoding.data[0].lon,
+          ],
+        });
         return response.data;
       } else {
         const response = await axios.get(WeatherUrlCor);
-        set({ weatherCorData: response.data, coordinates: cityName });
+        const responseGeoCoding = await axios.get(geoCodingCityUrl);
+
+        set({
+          weatherCorData: response.data,
+          coordinates: cityName,
+          cityName: responseGeoCoding.data[0].name,
+        });
         return response.data;
       }
     } catch (error) {
@@ -38,6 +72,14 @@ const useWeatherStore = create((set) => ({
       return null;
     }
   },
+
+  // addFavourite: async (cityName) => {
+  //   try {
+  //     const response = await axiosClientWeather.post("/", {
+  //       cityName: cityName,
+  //     });
+  //   } catch (error) {}
+  // },
 
   userFavourites: async () => {
     try {

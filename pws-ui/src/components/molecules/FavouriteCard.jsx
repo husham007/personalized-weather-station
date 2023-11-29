@@ -17,11 +17,17 @@ const FavouriteCard = ({ favourite }) => {
   const { setNotification } = useAuthStore();
   const { deleteFavourite } = useWeatherStore();
 
+ 
   useEffect(() => {
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${favourite.cityname}&appid=${Open_Weather_API}&units=metric`;
 
+    const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${favourite[0]}&lon=${favourite[1]}&appid=${Open_Weather_API}&units=metric`;
+
+    const Url =
+      typeof favourite.cityname === "string" ? WeatherUrl : WeatherUrlCor;
+
     axios
-      .get(WeatherUrl)
+      .get(Url)
       .then((res) => {
         setWeatherData(res.data);
       })
@@ -34,8 +40,6 @@ const FavouriteCard = ({ favourite }) => {
     deleteFavourite(favourite._id);
     setNotification(true, `${favourite.cityname} has been deleted`, "success");
   };
-
- 
 
   return (
     <>

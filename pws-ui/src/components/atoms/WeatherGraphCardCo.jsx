@@ -12,12 +12,13 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const WeatherGraphCardCo = () => {
   const { user, isLoading, setNotification } = useAuthStore();
-  const { weatherCorData, cityName, position } = useWeatherStore();
+  const { weatherCorData, cityName, coordinates } = useWeatherStore();
 
   const handleFavourite = () => {
     axiosClientWeather
       .post("/", {
         cityname: cityName,
+        coordinates: coordinates,
       })
       .then((res) => {
         setNotification(
