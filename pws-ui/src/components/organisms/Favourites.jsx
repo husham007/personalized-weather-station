@@ -8,20 +8,32 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 const Favourites = () => {
   const { userFavourites, favouriteCities } = useWeatherStore();
 
-  // console.log(favouriteCities);
   useEffect(() => {
     userFavourites();
   }, []);
 
   return (
     <>
-      <Grid sx={{ marginBottom: "10rem" }}>
-        {favouriteCities &&
-          favouriteCities.map((favourite) => (
-            <Grid key={favourite._id}>
-              <FavouriteCard favourite={favourite} />;
-            </Grid>
-          ))}
+      <Grid
+        container
+        sx={{
+          marginBottom: "10rem",
+          // marginTop: "5rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "1rem",
+          paddingLeft: "1rem",
+        }}
+      >
+        <Grid item xs={12} sm={8} md={8}>
+          {favouriteCities &&
+            favouriteCities.map((favourite) => (
+              <Grid key={favourite._id}>
+                <FavouriteCard favourite={favourite} />;
+              </Grid>
+            ))}
+        </Grid>
       </Grid>
     </>
   );

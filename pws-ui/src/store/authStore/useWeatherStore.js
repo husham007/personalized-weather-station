@@ -14,21 +14,6 @@ const useWeatherStore = create((set) => ({
     set({ position: [lat, lng] });
   },
 
-  geocodingCorData: null,
-
-  // weatherAPICo:
-
-  geoCodingAPI: async (cityName) => {
-    const API_KEY = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
-
-    try {
-      const geoCodingAPIApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${1}&appid=${API_KEY}`;
-      const response = await axios.get(ApiUrl);
-      console.log(response.data[0].lat);
-      set({ geocodingCorData: response.data });
-    } catch (error) {}
-  },
-
   weatherAPI: async (cityName) => {
     const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
 
@@ -79,7 +64,7 @@ const useWeatherStore = create((set) => ({
         cityname: cityName,
         coordinates: coordinates,
       });
-      
+
       return response;
     } catch (error) {
       console.log(error);

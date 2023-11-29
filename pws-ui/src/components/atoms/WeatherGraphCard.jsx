@@ -7,31 +7,24 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
-import axiosClientWeather from "../../axiosClientWeather";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const WeatherGraphCard = () => {
   const { user, isLoading, setNotification } = useAuthStore();
-  const { weatherData, cityName, coordinates } = useWeatherStore();
+  const { weatherData, cityName, coordinates, addFavourite } =
+    useWeatherStore();
 
-  const handleFavourite = () => {
-    axiosClientWeather
-      .post("/", {
-        cityname: cityName,
-        coordinates: coordinates,
-      })
-      .then((res) => {
-        setNotification(
-          true,
-          `${res.data.cityname} has added to your favourites`,
-          "success"
-        );
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        setNotification(true, err.response.data.error, "error");
-        console.log(err.response.data.error);
-      });
+  const handleFavourite = async () => {
+    const response = await addFavourite(cityName, coordinates);
+    if (response instanceof Error) {
+      setNotification(true, response.response.data.error, "error");
+    } else {
+      setNotification(
+        true,
+        `${response.data.cityname} has added to your favourites`,
+        "success"
+      );
+    }
   };
 
   return (

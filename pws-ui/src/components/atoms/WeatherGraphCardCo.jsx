@@ -7,7 +7,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
-import axiosClientWeather from "../../axiosClientWeather";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const WeatherGraphCardCo = () => {

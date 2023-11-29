@@ -12,15 +12,13 @@ const Home = () => {
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
 
-  const { weatherAPI, weatherData, geoCodingAPI,  } =
-    useWeatherStore();
+  const { weatherAPI } = useWeatherStore();
 
- 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
-   
+
     weatherAPI(city);
     setTestQuery("");
   };
@@ -79,7 +77,6 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      {radioOption === "city" && <WeatherGraphCard />}
       <Grid
         container
         sx={{
@@ -93,13 +90,25 @@ const Home = () => {
         }}
       >
         <Grid item xs={12} sm={8} md={8}>
+          {radioOption === "city" && <WeatherGraphCard />}
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        sx={{
+          marginBottom: "10rem",
+
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "1rem",
+          paddingLeft: "1rem",
+        }}
+      >
+        <Grid item xs={12} sm={8} md={8}>
           {radioOption === "map" && (
             <>
-              <Map
-                draggable="yes"
-                // setPosition={setPosition}
-                // position={position}
-              />
+              <Map draggable="yes" />
               <WeatherGraphCardCo />
             </>
           )}
