@@ -68,7 +68,7 @@ export const useWeatherGraph = (weatherData) => {
         renderer.current.dispose();
       }
     };
-  }, [weatherData]);
+  }, [init, weatherData]);
 
   return canvasRef;
 };

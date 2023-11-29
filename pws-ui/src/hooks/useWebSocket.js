@@ -19,7 +19,6 @@ const useWebSocket = ({
   // retry counter
   const [readyState, setReadyState] = useState(false);
 
-  console.log(defaultRetry, retryInterval);
   useEffect(() => {
     let ref;
     const webSocket = async () => {
@@ -33,6 +32,7 @@ const useWebSocket = ({
         setSend(() => {
           return (data) => {
             try {
+              console.log(data);
               const d = JSON.stringify(data);
               ws.send(d);
               return true;
@@ -52,7 +52,6 @@ const useWebSocket = ({
       // on close we should update connection state
       // and retry connection
       ws.onclose = () => {
-        console.log("hello");
         setReadyState(false);
         /*
         // retry logic
@@ -71,7 +70,6 @@ const useWebSocket = ({
     return () => {
       ref && ref.close();
     };
-    // retry dependency here triggers the connection attempt
   }, [socketUrl]);
 
   return { send, data, readyState };
