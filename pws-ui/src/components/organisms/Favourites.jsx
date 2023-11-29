@@ -8,6 +8,7 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 const Favourites = () => {
   const { userFavourites, favouriteCities } = useWeatherStore();
 
+  // console.log(favouriteCities);
   useEffect(() => {
     userFavourites();
   }, []);

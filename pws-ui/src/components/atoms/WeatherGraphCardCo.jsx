@@ -12,26 +12,20 @@ import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const WeatherGraphCardCo = () => {
   const { user, isLoading, setNotification } = useAuthStore();
-  const { weatherCorData, cityName, coordinates } = useWeatherStore();
+  const { weatherCorData, cityName, coordinates, addFavourite } =
+    useWeatherStore();
 
-  const handleFavourite = () => {
-    axiosClientWeather
-      .post("/", {
-        cityname: cityName,
-        coordinates: coordinates,
-      })
-      .then((res) => {
-        setNotification(
-          true,
-          `${res.data.cityname} has added to your favourites`,
-          "success"
-        );
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        setNotification(true, err.response.data.error, "error");
-        console.log(err.response.data.error);
-      });
+  const handleFavourite = async () => {
+    const response = await addFavourite(cityName, coordinates);
+    if (response instanceof Error) {
+      setNotification(true, response.response.data.error, "error");
+    } else {
+      setNotification(
+        true,
+        `${response.data.cityname} has added to your favourites`,
+        "success"
+      );
+    }
   };
 
   return (

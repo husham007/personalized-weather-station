@@ -73,17 +73,24 @@ const useWeatherStore = create((set) => ({
     }
   },
 
-  // addFavourite: async (cityName) => {
-  //   try {
-  //     const response = await axiosClientWeather.post("/", {
-  //       cityName: cityName,
-  //     });
-  //   } catch (error) {}
-  // },
+  addFavourite: async (cityName, coordinates) => {
+    try {
+      const response = await axiosClientWeather.post("/", {
+        cityname: cityName,
+        coordinates: coordinates,
+      });
+      
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
 
   userFavourites: async () => {
     try {
       const response = await axiosClientWeather.get("/");
+
       set({ favouriteCities: response.data });
       return response.data;
     } catch (error) {
