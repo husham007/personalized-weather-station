@@ -77,43 +77,45 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      <Grid
-        container
-        sx={{
-          marginBottom: "10rem",
-          marginTop: "5rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingRight: "1rem",
-          paddingLeft: "1rem",
-        }}
-      >
-        <Grid item xs={12} sm={8} md={8}>
-          {radioOption === "city" && <WeatherGraphCard />}
+      {radioOption === "city" && (
+        <Grid
+          container
+          sx={{
+            marginBottom: "10rem",
+            marginTop: "10rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingRight: "1rem",
+            paddingLeft: "1rem",
+          }}
+        >
+          <Grid item xs={12} sm={8} md={8}>
+            <WeatherGraphCard />
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid
-        container
-        sx={{
-          marginBottom: "10rem",
-
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingRight: "1rem",
-          paddingLeft: "1rem",
-        }}
-      >
-        <Grid item xs={12} sm={8} md={8}>
-          {radioOption === "map" && (
+      )}
+      {radioOption === "map" && (
+        <Grid
+          container
+          sx={{
+            marginBottom: "15rem",
+            marginTop: "5rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingRight: "1rem",
+            paddingLeft: "1rem",
+          }}
+        >
+          <Grid item xs={12} sm={8} md={8}>
             <>
               <Map draggable="yes" />
               <WeatherGraphCardCo />
             </>
-          )}
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </>
   );
 };
