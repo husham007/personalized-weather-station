@@ -15,17 +15,10 @@ const FavouriteCard = ({ favourite }) => {
   const [weatherData, setWeatherData] = useState(null);
   const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
   const { setNotification } = useAuthStore();
-  const { deleteFavourite } = useWeatherStore();
-
-  // console.log(favourite.coordinates[0]);
+  const { deleteFavourite, favouriteCardData } = useWeatherStore();
 
   useEffect(() => {
-    const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${favourite.cityname}&appid=${Open_Weather_API}&units=metric`;
-
     const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${favourite.coordinates[0]}&lon=${favourite.coordinates[1]}&appid=${Open_Weather_API}&units=metric`;
-
-    // const Url =
-    //   typeof favourite.cityname === "string" ? WeatherUrl : WeatherUrlCor;
 
     axios
       .get(WeatherUrlCor)
