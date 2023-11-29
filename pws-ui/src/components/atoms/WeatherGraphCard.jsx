@@ -30,15 +30,12 @@ const WeatherGraphCard = () => {
   return (
     <>
       <Grid
-        container
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           paddingRight: "1rem",
           paddingLeft: "1rem",
-          height: "15rem",
-          marginTop: "6rem",
         }}
       >
         <Grid
