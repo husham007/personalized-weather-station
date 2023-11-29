@@ -77,7 +77,7 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary"  disabled/>}
+              control={<Checkbox value="remember" color="primary" disabled />}
               label="Remember me"
             />
             <Button
@@ -100,7 +100,6 @@ export default function SignIn() {
               <Grid item xs>
                 <Typography
                   variant="subtitle1"
-                  underline
                   style={{ textDecoration: "underline" }}
                 >
                   Forgot password?
