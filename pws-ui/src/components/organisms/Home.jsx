@@ -24,7 +24,6 @@ const Home = () => {
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
     setCity(city);
-    // weatherAPI(city);
     setTestQuery("");
   };
 
@@ -64,7 +63,7 @@ const Home = () => {
           item
           xs={12}
           sm={8}
-          md={6}
+          md={7}
           textAlign={{ xs: "center", sm: "left" }}
         >
           <ControlledRadioButtonsGroup
@@ -95,7 +94,7 @@ const Home = () => {
             paddingLeft: "1rem",
           }}
         >
-          <Grid item xs={12} sm={8} md={8}>
+          <Grid item xs={12} sm={8} md={8} lg={8}>
             <WeatherGraphCard />
           </Grid>
         </Grid>
