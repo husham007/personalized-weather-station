@@ -9,17 +9,21 @@ import WeatherGraphCardCo from "../atoms/WeatherGraphCardCo";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
+  const [city, setCity] = useState("Helsinki");
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
 
   const { weatherAPI } = useWeatherStore();
 
+  useEffect(() => {
+    weatherAPI(city);
+  }, [city]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
-
-    weatherAPI(city);
+    setCity(city);
     setTestQuery("");
   };
 
@@ -59,7 +63,7 @@ const Home = () => {
           item
           xs={12}
           sm={8}
-          md={6}
+          md={7}
           textAlign={{ xs: "center", sm: "left" }}
         >
           <ControlledRadioButtonsGroup
@@ -90,7 +94,7 @@ const Home = () => {
             paddingLeft: "1rem",
           }}
         >
-          <Grid item xs={12} sm={8} md={8}>
+          <Grid item xs={12} sm={8} md={8} lg={8}>
             <WeatherGraphCard />
           </Grid>
         </Grid>
