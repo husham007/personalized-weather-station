@@ -8,14 +8,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
-import axiosClientWeather from "../../axiosClientWeather";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const FavouriteCard = ({ favourite }) => {
   const [weatherData, setWeatherData] = useState(null);
   const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
   const { setNotification } = useAuthStore();
-  const { deleteFavourite, favouriteCardData } = useWeatherStore();
+  const { deleteFavourite } = useWeatherStore();
 
   useEffect(() => {
     const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${favourite.coordinates[0]}&lon=${favourite.coordinates[1]}&appid=${Open_Weather_API}&units=metric`;

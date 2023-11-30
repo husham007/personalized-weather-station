@@ -9,17 +9,22 @@ import WeatherGraphCardCo from "../atoms/WeatherGraphCardCo";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
+  const [city, setCity] = useState("Helsinki");
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
 
   const { weatherAPI } = useWeatherStore();
 
+  useEffect(() => {
+    weatherAPI(city);
+  }, [city]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
-
-    weatherAPI(city);
+    setCity(city);
+    // weatherAPI(city);
     setTestQuery("");
   };
 
