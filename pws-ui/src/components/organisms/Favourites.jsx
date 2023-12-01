@@ -13,7 +13,6 @@ const Favourites = () => {
   return (
     <>
       <Grid
-        container
         sx={{
           marginBottom: "10rem",
           display: "flex",
