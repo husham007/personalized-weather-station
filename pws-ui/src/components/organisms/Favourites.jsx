@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import FavouriteCard from "../molecules/FavouriteCard";
-import axiosClientWeather from "../../axiosClientWeather";
-import axios from "axios";
 import { Grid } from "@mui/material";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
@@ -18,7 +16,6 @@ const Favourites = () => {
         container
         sx={{
           marginBottom: "10rem",
-          // marginTop: "5rem",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -30,7 +27,7 @@ const Favourites = () => {
           {favouriteCities &&
             favouriteCities.map((favourite) => (
               <Grid key={favourite._id}>
-                <FavouriteCard favourite={favourite} />;
+                <FavouriteCard favourite={favourite} />
               </Grid>
             ))}
         </Grid>
