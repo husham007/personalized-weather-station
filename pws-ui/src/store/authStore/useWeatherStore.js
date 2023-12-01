@@ -25,7 +25,7 @@ const useWeatherStore = create((set) => ({
 
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
 
-    const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${cityName[0]}&lon=${cityName[1]}&appid=${Open_Weather_API}&units=metric`;
+    const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityName[0]}&lon=${cityName[1]}&appid=${Open_Weather_API}&units=metric`;
 
     try {
       if (typeof cityName === "string") {

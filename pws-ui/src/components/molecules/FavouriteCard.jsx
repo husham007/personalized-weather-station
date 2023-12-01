@@ -16,6 +16,9 @@ const FavouriteCard = ({ favourite }) => {
   const { setNotification } = useAuthStore();
   const { deleteFavourite } = useWeatherStore();
 
+
+  
+
   useEffect(() => {
     const WeatherUrlCor = `https://api.openweathermap.org/data/2.5/weather?lat=${favourite.coordinates[0]}&lon=${favourite.coordinates[1]}&appid=${Open_Weather_API}&units=metric`;
 
