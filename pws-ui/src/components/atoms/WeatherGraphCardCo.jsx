@@ -1,22 +1,14 @@
 import React from "react";
-import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import useAuthStore from "../../store/authStore/useAuthStore";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 import WeatherCard from "./WeatherCard";
-
 
 const WeatherGraphCardCo = () => {
   const { user, isLoading, setNotification } = useAuthStore();
   const { weatherCorData, cityName, coordinates, addFavourite } =
     useWeatherStore();
-
- 
 
   const handleFavourite = async () => {
     const response = await addFavourite(cityName, coordinates);

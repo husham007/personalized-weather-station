@@ -42,13 +42,15 @@ const useWeatherStore = create((set) => ({
         });
         return response.data;
       } else {
+        // console.log(cityName);
         const response = await axios.get(WeatherUrlCor);
-        const responseGeoCoding = await axios.get(geoCodingCityUrl);
+        // const responseGeoCoding = await axios.get(geoCodingCityUrl);
+        // console.log(response.data.city.name);
 
         set({
           weatherCorData: response.data,
           coordinates: cityName,
-          cityName: responseGeoCoding.data[0].name,
+          cityName: response.data.city.name,
         });
         return response.data;
       }
