@@ -159,14 +159,15 @@ const UserProfile = () => {
                         id="username"
                         label={username}
                         autoFocus
+                        disabled
                       />
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                      <TextField fullWidth label="Country" />
+                      <TextField fullWidth label="Country" disabled />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <TextField fullWidth label="Phone" />
+                      <TextField fullWidth label="Phone" disabled />
                     </Grid>
                   </Grid>
 
@@ -186,6 +187,7 @@ const UserProfile = () => {
                             bgcolor: "error.main",
                           },
                         }}
+                        disabled
                       >
                         cancel
                       </Button>
@@ -203,6 +205,7 @@ const UserProfile = () => {
                             bgcolor: stringToColor(name),
                           },
                         }}
+                        disabled
                       >
                         Save changes
                       </Button>

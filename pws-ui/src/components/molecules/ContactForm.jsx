@@ -51,6 +51,7 @@ const ContactForm = () => {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                disabled
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -61,6 +62,7 @@ const ContactForm = () => {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                disabled
               />
             </Grid>
             <Grid item xs={12}>
@@ -71,6 +73,7 @@ const ContactForm = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                disabled
               />
             </Grid>
             <Grid item xs={12}>
@@ -80,6 +83,7 @@ const ContactForm = () => {
                 multiline
                 rows={6}
                 fullWidth
+                disabled
               />
             </Grid>
           </Grid>
@@ -87,6 +91,7 @@ const ContactForm = () => {
             type="submit"
             fullWidth
             variant="contained"
+            disabled
             sx={{
               mt: 3,
               mb: 2,

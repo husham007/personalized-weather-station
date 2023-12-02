@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, CssBaseline } from "@mui/material";
 import hero from "../../assets/images/hero.jpg";
 import SearchBar from "../molecules/Searchbar";
@@ -11,17 +11,21 @@ import WeatherGraphCardCo from "../atoms/WeatherGraphCardCo";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
 const Home = () => {
+  const [city, setCity] = useState("Helsinki");
   const [textQuery, setTestQuery] = useState("");
   const [radioOption, setRadioOption] = useState("city");
 
+  const { weatherAPI } = useWeatherStore();
 
-  const { weatherAPI, weatherData } = useWeatherStore();
+  useEffect(() => {
+    weatherAPI(city);
+  }, [city]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const city = data.get("serachQuery");
-    weatherAPI(city);
+    setCity(city);
     setTestQuery("");
   };
 
@@ -61,7 +65,7 @@ const Home = () => {
           item
           xs={12}
           sm={8}
-          md={6}
+          md={7}
           textAlign={{ xs: "center", sm: "left" }}
         >
           <ControlledRadioButtonsGroup
@@ -79,32 +83,43 @@ const Home = () => {
           ) : null}
         </Grid>
       </Grid>
-      {radioOption === "city" && <WeatherGraphCard />}
-      <Grid
-        container
-        sx={{
-          marginBottom: "10rem",
-          marginTop: "5rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingRight: "1rem",
-          paddingLeft: "1rem",
-        }}
-      >
-        <Grid item xs={12} sm={8} md={8}>
-          {radioOption === "map" && (
+      {radioOption === "city" && (
+        <Grid
+          sx={{
+            marginBottom: "10rem",
+            marginTop: "10rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingRight: "1rem",
+            paddingLeft: "1rem",
+          }}
+        >
+          <Grid item xs={12} sm={9} md={8} lg={8}>
+            <WeatherGraphCard />
+          </Grid>
+        </Grid>
+      )}
+      {radioOption === "map" && (
+        <Grid
+          sx={{
+            marginBottom: "15rem",
+            marginTop: "5rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingRight: "1rem",
+            paddingLeft: "1rem",
+          }}
+        >
+          <Grid item xs={12} sm={8} md={8}>
             <>
-              <Map
-                draggable="yes"
-                // setPosition={setPosition}
-                // position={position}
-              />
+              <Map draggable="yes" />
               <WeatherGraphCardCo />
             </>
-          )}
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </>
   );
 };

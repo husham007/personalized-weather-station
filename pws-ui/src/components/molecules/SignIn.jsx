@@ -27,7 +27,7 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
-   
+
     setNotification(true, response.message, response.status);
     navigate("/");
   };
@@ -77,7 +77,7 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" disabled />}
               label="Remember me"
             />
             <Button
@@ -98,9 +98,12 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2" sx={{ color: "black" }}>
+                <Typography
+                  variant="subtitle1"
+                  style={{ textDecoration: "underline" }}
+                >
                   Forgot password?
-                </Link>
+                </Typography>
               </Grid>
               <Grid item>
                 <Link to="/signup" variant="body2" sx={{ color: "black" }}>

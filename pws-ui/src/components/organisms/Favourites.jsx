@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import FavouriteCard from "../molecules/FavouriteCard";
-import axiosClientWeather from "../../axiosClientWeather";
-import axios from "axios";
 import { Grid } from "@mui/material";
 import useWeatherStore from "../../store/authStore/useWeatherStore";
 
@@ -12,16 +10,26 @@ const Favourites = () => {
     userFavourites();
   }, []);
 
-
   return (
     <>
-      <Grid sx={{ marginBottom: "10rem" }}>
-        {favouriteCities &&
-          favouriteCities.map((favourite) => (
-            <Grid key={favourite._id}>
-              <FavouriteCard favourite={favourite} />;
-            </Grid>
-          ))}
+      <Grid
+        sx={{
+          marginBottom: "10rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "1rem",
+          paddingLeft: "1rem",
+        }}
+      >
+        <Grid item xs={12} sm={8} md={8}>
+          {favouriteCities &&
+            favouriteCities.map((favourite) => (
+              <Grid key={favourite._id}>
+                <FavouriteCard favourite={favourite} />
+              </Grid>
+            ))}
+        </Grid>
       </Grid>
     </>
   );
