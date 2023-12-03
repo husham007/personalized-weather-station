@@ -36,7 +36,9 @@ export default function SignUp() {
     });
 
     setNotification(true, response.message, response.status);
-    navigate("/login");
+    if (response) {
+      navigate("/login");
+    }
   };
 
   return (
@@ -100,6 +102,7 @@ export default function SignUp() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
+                    disabled
                     control={
                       <Checkbox value="allowExtraEmails" color="primary" />
                     }

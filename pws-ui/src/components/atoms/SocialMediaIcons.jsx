@@ -19,23 +19,23 @@ const SocialMediaIcons = () => {
         Follow us
       </Typography>
 
-      <IconButton sx={{ p: 0, mr: 1 }}>
+      <IconButton sx={{ p: 0, mr: 1 }} disabled>
         <LinkedInIcon sx={{ color: "white" }} fontSize="large" />
       </IconButton>
 
-      <IconButton sx={{ p: 0, mr: 1 }}>
+      <IconButton sx={{ p: 0, mr: 1 }} disabled>
         <GitHubIcon sx={{ color: "white", padding: "0px" }} fontSize="large" />
       </IconButton>
 
-      <IconButton sx={{ p: 0, mr: 1 }}>
+      <IconButton sx={{ p: 0, mr: 1 }} disabled>
         <InstagramIcon sx={{ color: "white" }} fontSize="large" />
       </IconButton>
 
-      <IconButton sx={{ p: 0, mr: 1 }}>
+      <IconButton sx={{ p: 0, mr: 1 }} disabled>
         <TwitterIcon sx={{ color: "white" }} fontSize="large" />
       </IconButton>
 
-      <IconButton sx={{ p: 0, mr: 1 }}>
+      <IconButton sx={{ p: 0, mr: 1 }} disabled>
         <FacebookIcon sx={{ color: "white" }} fontSize="large" />
       </IconButton>
     </Grid>
