@@ -6,8 +6,6 @@ import AirIcon from "@mui/icons-material/Air";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 
 const WeatherCard = ({ weatherData }) => {
-    console.log(weatherData);
-
   const convertDay = (input) => {
     const date = new Date(input);
     return date.toLocaleDateString("en-US", { weekday: "long" });
