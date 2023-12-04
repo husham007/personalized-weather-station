@@ -15,14 +15,13 @@ const Map = ({ company, city, markerPosition, draggable }) => {
   const { position } = useWeatherStore();
 
   return (
-    <div>
+    <div >
       <MapContainer
         center={position}
         zoom={13}
         scrollWheelZoom={true}
         style={{
           height: "60vh",
-          width: "100vh",
           borderRadius: "0.5rem",
         }}
       >
