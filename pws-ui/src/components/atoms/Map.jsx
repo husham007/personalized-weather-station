@@ -12,19 +12,18 @@ const icon = L.icon({
 });
 
 const Map = ({ company, city, markerPosition, draggable }) => {
-  // const [position, setPosition] = useState([
-  //   60.19928562367708, 24.93441320897156,
-  // ]);
-
   const { position } = useWeatherStore();
 
   return (
-    <div>
+    <div >
       <MapContainer
         center={position}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "400px", borderRadius: "0.5rem" }}
+        style={{
+          height: "60vh",
+          borderRadius: "0.5rem",
+        }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

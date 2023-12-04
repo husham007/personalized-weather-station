@@ -40,7 +40,7 @@ const useAuthStore = create((set) => ({
   signIn: async (credentials) => {
     try {
       const response = await axiosClient.post("/signin", credentials);
-      console.log(response);
+
       set({ user: response.data, isLoading: false });
 
       return { status: "success", message: "Sign-in successful!" };

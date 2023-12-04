@@ -83,6 +83,7 @@ const Home = () => {
       </Grid>
       {radioOption === "city" && (
         <Grid
+          container
           sx={{
             marginBottom: "10rem",
             marginTop: "10rem",
@@ -100,6 +101,7 @@ const Home = () => {
       )}
       {radioOption === "map" && (
         <Grid
+          container
           sx={{
             marginBottom: "15rem",
             marginTop: "5rem",
