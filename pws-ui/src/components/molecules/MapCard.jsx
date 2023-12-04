@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Map from "../atoms/Map";
 import Address from "../atoms/Address";
 
@@ -16,12 +17,22 @@ const MapCard = () => {
         <CssBaseline />
 
         <CardMedia>
-          <Map
-            company={"WeatherStation Oy"}
-            city={"Helsinki"}
-            markerPosition={[60.19928562367708, 24.93441320897156]}
-            position={[60.19928562367708, 24.93441320897156]}
-          />
+          <MapContainer
+            center={[60.19928562367708, 24.93441320897156]}
+            zoom={13}
+            scrollWheelZoom={true}
+            style={{ height: "400px", borderRadius: "0.5rem" }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[60.19928562367708, 24.93441320897156]}>
+              <Popup>
+                WeatherStation Oy <br /> Helsinki.
+              </Popup>
+            </Marker>
+          </MapContainer>
         </CardMedia>
 
         <CardContent sx={{ bgcolor: "black" }}>
