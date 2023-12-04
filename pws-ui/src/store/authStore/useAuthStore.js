@@ -1,89 +1,90 @@
 import { create } from "zustand";
+import axiosClient from "../../axiosClient";
 import axios from "axios";
-import { extractUserInfoFromToken } from "../../misc/tokenUtils";
 
-const AUTH_API_URL = (import.meta.env.VITE_BE_URL || "") + "/api/auth";
+const useAuthStore = create((set) => ({
+  user: undefined,
+  isLoading: true,
+  setIsLoading: (isLoading) => {
+    set({ isLoading });
+  },
 
-// Create a Zustand store for authentication
-const useAuthStore = create((set) => {
-  const storedToken = localStorage.getItem("token");
-  const initialTokenData = storedToken
-    ? extractUserInfoFromToken(storedToken)
-    : null;
+  weatherData: null,
 
-  set({
-    username: initialTokenData ? initialTokenData.username : null,
-    email: initialTokenData ? initialTokenData.email : null,
-    id: initialTokenData ? initialTokenData.id : null,
-    token: storedToken,
-  });
+  weatherAPI: async (cityName) => {
+    const Open_Weather_API = import.meta.env.VITE_OPEN_WEATHWER_API_KEY;
+    const WeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${Open_Weather_API}&units=metric`;
 
-  return {
-    // Sign-up function
-    signUp: async (userData) => {
-      try {
-        const response = await axios.post(`${AUTH_API_URL}/signup`, userData);
-        const { username, id, email, token } = response.data;
-        set({ username, email, id, token });
-        return { status: "success", message: "Sign-up successful!" };
-      } catch (error) {
-        return { success: false, message: "Sign-up failed. Please try again." };
-      }
-    },
+    try {
+      const response = await axios.get(WeatherUrl);
+      set({ weatherData: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
-    // Sign-in function
-    signIn: async (credentials) => {
-      try {
-        const response = await axios.post(
-          `${AUTH_API_URL}/signin`,
-          credentials
-        );
-        const { username, id, email, token } = response.data;
-        set({ username, id, email, token });
-        localStorage.setItem("token", token);
-        return { status: "success", message: "Sign-in successful!" };
-      } catch (error) {
-        return {
-          status: "error",
-          message: "Sign-in failed. Please check your credentials.",
-        };
-      }
-    },
+  //signup
 
-    signOut: async () => {
-      try {
-        set((state) => {
-          return { username: null, token: null, email: null };
-        });
-        localStorage.removeItem("token");
-        return { success: true, message: "Logout successful!" };
-      } catch (error) {}
-    },
+  signUp: async (userData) => {
+    try {
+      const response = await axiosClient.post(`/signup`, userData);
+      const { username, id, email, token } = response.data;
+      set({ username, email, id, token });
+      return { status: "success", message: "Sign-up successful!" };
+    } catch (error) {
+      return { success: false, message: "Sign-up failed. Please try again." };
+    }
+  },
 
-    notification: {
-      open: false,
-      message: "",
-      severity: "",
-    },
+  // Sign-in function
+  signIn: async (credentials) => {
+    try {
+      const response = await axiosClient.post("/signin", credentials);
+      console.log(response);
+      set({ user: response.data, isLoading: false });
 
-    setNotification: (open, message, severity) =>
-      set((state) => ({
-        notification: { ...state.notification, open, message, severity },
-      })),
+      return { status: "success", message: "Sign-in successful!" };
+    } catch (error) {
+      return {
+        status: "error",
+        message: "Sign-in failed. Please check your credentials.",
+      };
+    }
+  },
 
-    checkStoredToken: () => {
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
-        const initialTokenData = extractUserInfoFromToken(storedToken);
+  signOut: async () => {
+    try {
+      const response = await axiosClient.post("/logout");
+      set((state) => {
+        return { user: undefined, isLoading: false };
+      });
+      return { success: true, message: "Logout successful!" };
+    } catch (error) {}
+  },
 
-        set({
-          email: initialTokenData ? initialTokenData.email : null,
-          id: initialTokenData ? initialTokenData.id : null,
-          token: storedToken,
-        });
-      }
-    },
-  };
-});
+  notification: {
+    open: false,
+    message: "",
+    severity: "",
+  },
+
+  setNotification: (open, message, severity) =>
+    set((state) => ({
+      notification: { ...state.notification, open, message, severity },
+    })),
+
+  getProfile: async () => {
+    try {
+      // set({ isLoading: false });
+
+      const response = await axiosClient.get(`/profile`);
+      set({ user: response.data });
+
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+}));
 
 export default useAuthStore;
