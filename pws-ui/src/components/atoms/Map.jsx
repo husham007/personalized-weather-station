@@ -22,6 +22,7 @@ const Map = ({ company, city, markerPosition, draggable }) => {
         scrollWheelZoom={true}
         style={{
           height: "60vh",
+          width: "100vh",
           borderRadius: "0.5rem",
         }}
       >
