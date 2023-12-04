@@ -1,4 +1,6 @@
-# Personalized Weather Station
+# Personalized Weather Station 
+
+**Alert!! The application operates seamlessly when installed locally. Currently, the frontend is deployed on Netlify, and the backend is on Render. However, Render doesn't permit cookies for cross-origin functionality.**
 
 Personalized Weather Station (PWS) is a full-stack web application designed to provide a visual representation of the weather for your favorite locations through an intuitive 2D graph. Whether you're a weather enthusiast or simply curious about the conditions in different places, PWS offers a personalized and interactive weather tracking experience.
 
@@ -17,7 +19,7 @@ Personalized Weather Station comes with a set of features to enhance your weathe
 
 - **User Registration and Authentication** Users can sign up and log in to access the application's features.
 - **Location Tracking:** Add and manage your favorite locations for personalized weather insights.
-- **2D Weather Graph:** View the weather conditions of your selected locations in a visually appealing 2D graph.
+- **Weather Data:** View the weather conditions of your selected locations.
 - **Real-time Updates:** Get up-to-date weather information with real-time updates for accurate tracking.
 - **User-friendly Interface:** Navigate through the application effortlessly with an intuitive and user-friendly design.,
 
