@@ -2,7 +2,7 @@
 
 **Alert!! The application operates seamlessly when installed locally. Currently, the frontend is deployed on Netlify, and the backend is on Render. However, Render doesn't permit cookies for cross-origin functionality.**
 
-Personalized Weather Station (PWS) is a full-stack web application designed to provide a visual representation of the weather for your favorite locations through an intuitive 2D graph (in progress) . Whether you're a weather enthusiast or simply curious about the conditions in different places, PWS offers a personalized and interactive weather tracking experience.
+Personalized Weather Station (PWS) is a full-stack web application designed to provide a visual representation of the weather for your favorite locations. Whether you're a weather enthusiast or simply curious about the conditions in different places, PWS offers a personalized and interactive weather tracking experience.
 
 ## Visit the PWS App
 
