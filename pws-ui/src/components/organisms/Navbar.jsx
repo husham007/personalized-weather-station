@@ -240,57 +240,7 @@ const Navbar = () => {
                 </>
               )}
             </>
-            {/* {!isLoading && !user ? (
-              <>
-                <Button
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={() => navigate("/login")}
-                >
-                  Login
-                </Button>
-                <Button
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={() => navigate("/signup")}
-                >
-                  Signup
-                </Button>
-              </>
-            ) : !isLoading && user ? (
-              <>
-                <Box sx={{ flexGrow: 0 }} id="avatar">
-                  <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt="Remy Sharp" />
-                    </IconButton>
-                  </Tooltip>
-                  <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar-user"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={() => handleCloseUserMenu()}
-                  >
-                    <MenuItem onClick={() => handleCloseUserMenu("profile")}>
-                      <Typography textAlign="center">Profile</Typography>
-                    </MenuItem>
-                    <MenuItem onClick={() => handleCloseUserMenu("logout")}>
-                      <Typography textAlign="center" id="logout">
-                        Logout
-                      </Typography>
-                    </MenuItem>
-                  </Menu>
-                </Box>
-              </>
-            ) : null} */}
+            
           </Toolbar>
         </Container>
       </AppBar>
